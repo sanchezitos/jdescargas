@@ -1,0 +1,34 @@
+<!--<per>{{movies}}</per>-->
+<div class="row">
+	<div class="col-md-9">
+
+	
+{{#each all_movies}}
+<a href="/movies/{{title}}" >
+<div class="div-imagen" style="margin-bottom: 20px; margin-right: 10px;  ">
+	<div style="background-color: black; height: 21.5rem; padding: 10px; border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000;
+">
+
+		<div class="cat"><span style="color:whitesmoke; padding: 10px; "><b>{{title}} ({{year}})</b></span></div>
+		<FONT FACE="arial narrow"><p style="color:gray">{{description}}</p>
+			</FONT>
+	<div style="padding-top: 75px; color:gray;"><p>{{timeago date_add}} • {{views}} vistas </p></div>
+	<div class="cat" style=" color:whitesmoke;">{{category}}</div>
+		
+	</div>
+	<img class="desvanecer" style="border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000; height: 21.5rem; width: 15.5rem;
+" src="/upload/{{filename}}" />
+
+</div>
+
+</a>
+
+{{/each}}
+</div>
+</div>

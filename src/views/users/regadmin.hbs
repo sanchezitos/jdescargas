@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-md-4 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <a href="/users/all_users"><span style="color:dimgray; font-size: 20px;"><i
+                            class="fas fa-arrow-left"></i></span></a>
+                Crear cuenta Administrador
+            </div>
+            <div class="card-body">
+                <form action="/users/regadmin" method="POST">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="name" placeholder="Nombre" value="{{name}}">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="email" placeholder="Correo" value="{{email}}">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" placeholder="Contraseña" value="{{password}}">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="conf_password"
+                            placeholder="Confirme contraseña" value="{{conf_password}}">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-block btn-light">Registrarse</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

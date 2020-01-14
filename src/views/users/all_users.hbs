@@ -1,0 +1,103 @@
+<div class="row">
+    <div class="col-3.5">
+        <table class="table table-hover table-light">
+            <thead>
+                <tr>
+
+                    <th scope="col"> <a href="/"><span style=""><i class="fas fa-arrow-left"></i></span></a> Usuario
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each all_users}}
+
+                <tr>
+                    <td>{{name}}</td>
+                    <td>
+                        {{#if typeuser}}
+                        <center>
+                            <a data-toggle="tooltip" title="Usuario Administrador"><span style="color: gray;"><i
+                                        class="fas fa-user-shield"></i></span></a>
+                            <a data-toggle="tooltip" title="Mostrar usuario" href="/users/all_users/{{_id}}"><span
+                                    style="color: green;"><i class="fas fa-user-check"></i></span></a>
+                        </center>
+
+                        {{else}}
+                        <a data-toggle="tooltip" title="Editar usuario" href="/users/edit_user/{{_id}}"><i
+                                class="fas fa-user-edit"></a></i>
+                        <a data-toggle="tooltip" href="/users/delete_user/{{_id}}"><span
+                                style="color: rgb(248, 0, 0);"><i data-toggle="tooltip" title="Eliminar usuario"
+                                    class="fas fa-user-times"></i></span></a>
+                        <a data-toggle="tooltip" title="Mostrar usuario" href="/users/all_users/{{_id}}"><span
+                                style="color: green;"><i class="fas fa-user-check"></i></span></a>
+
+                        {{/if}}
+                    </td>
+                    <td>Creado {{timeago date}}</td>
+                </tr>
+
+            </tbody>
+
+            {{else}}
+            <div class="card mx-auto">
+                <div class="card-body">
+                    <p class="lead">No hay Usuarios </p>
+                    <a href="/notes/add" class="btn btn-succes btn-block">Crear una</a>
+                </div>
+            </div>
+
+
+            {{/each}}
+        </table>
+    </div>
+    <div class="col-8" style="">
+        <div class="row">
+                      <div class="col-1">
+
+            </div>
+            <div class="col-5" style="background-color:white; padding-left:20px; padding: 20px;">
+                <center>
+                    <h5>Nuevo usuario</h5>
+                    ¿Desea ingresar un nuevo usuario?
+                    <br>
+                    <a href="/users/registrar" class="btn btn-primary btn-block btn-dark">Ingresar nuevo usuario</a>
+                </center>
+
+            </div>
+            <div class="col-1">
+
+            </div>
+            <div class="col-5" style="background-color:white; padding: 20px; ">
+                <center>
+                    <h5>Nuevo Admministrador</h5>
+                    ¿Desea ingresar un administrador?
+                    <a href="/users/regadmin" class="btn btn-primary btn-block btn-dark">Ingresar nuevo
+                        administrador</a>
+                </center>
+            </div>
+        </div>
+        <center>
+            <h2>Usuarios nuevos</h2>
+            {{#each user_new}}
+            <span>{{name }}</span> Creado <span>{{timeago date}}</span>
+            <br>
+            {{/each}}
+             <h2>Usuarios viejos</h2>
+            {{#each user_old}}
+            <span>{{name }}</span> Creado <span>{{timeago date}}</span>
+            <br>
+            {{/each}}
+        </center>
+     
+    </div>
+
+
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+
+    });
+</script>

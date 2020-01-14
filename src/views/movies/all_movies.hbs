@@ -1,0 +1,77 @@
+{{#if all_movies}}
+<div class="row">
+  <div class="col-7">
+    <a class="btn btn-light" href="/">Mostrar peliculas</a>
+    <a class="btn btn-light" href="/movies/add">Añadir pelicula</a>
+    <table class="table table-hover table-light">
+      <thead>
+        <tr>
+          <th scope="col"> <a href="/"></a> Peliculas
+          </th>
+        </tr>
+        <tr>
+          <th scope="col"> Titulo</th>
+          <th scope="col"> Tiempo de adición</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {{#each all_movies}}
+
+        <tr>
+          <td>{{title}}</td>
+          <td>{{timeago date_add}}
+          <td>
+            <a data-toggle="tooltip" title="Editar peliula" href="/movies/edit_movie/{{_id}}"><i
+                class="fas fa-edit"></a></i>
+            <a data-toggle="tooltip" href="/movies/{{title}}" title="Mostrar pelicula"><span style="color: green;"><i class="fas fa-film"></i></span></a>
+            <a data-toggle="tooltip" title="Añadir links" href="/movies/add_link/{{_id}}"><i style="color: gray;"
+                class="fas fa-plus"></a></i>
+          </td>
+        </tr>
+      </tbody>
+      {{/each}}
+    </table>
+    {{else}}
+    <div class="card mx-auto">
+      <div class="card-body">
+        <p class="lead">No hay peliculas agregadas por usted, desea ingresar una? </p>
+        <a href="/movies/add" class="btn btn-succes btn-block">Ingresar una</a>
+      </div>
+    </div>
+    {{/if}}
+
+    <!-- Modal editar -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="foto">
+
+            </div>
+            <div id="description">
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+
+      });
+    </script>

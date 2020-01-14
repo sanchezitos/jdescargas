@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-md-5">
+        <div class="card p-4 ">
+            <h3>Añadir links </h3>
+            <hr>
+            <div class="form-group">
+                <form action="/movies/add_link/{{movie._id}}?_method=PUT" method="POST">
+                    <input type="text" name="link" class="form-control" placeholder="Añada el link que desee" required>
+            </div>
+            <button class="btn btn-light" type="submit"><i class="fa fa-film"></i>Añadir link</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-6">
+          <script>
+            var link ='{{movie._id}}';
+            var link1 ='{{movie.link_view}}'
+    
+           </script>
+        {{#each link}}
+        <div class="card p-1">
+            {{link}}
+            <hr>
+              <script>
+                document.write(' <form action="/movies/remove_link/'+link+'?_method=DELETE" method="POST">'); 
+            </script>
+                <input type="text" name="link" value="{{link}}" hidden="true">
+            <script>
+                document.write('<input type="text" name="movie" value="'+link+'" hidden="true">');
+            </script>
+                <button class="btn btn-danger" type="submit"><i class="fas fa-trash-alt"></i> Eliminar link</button>
+            </form>
+        </div>
+        {{/each}}
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+        });
+    </script>
