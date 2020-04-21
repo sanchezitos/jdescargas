@@ -4,20 +4,29 @@ const path = require('path');
 
 const MovieSchema = new Schema({
     filename : {type: String},
-    title : {type: String, required: true},
-    description : {type: String, required: true},
-    duration : {type: String, required: true},
+    title : {type: String},
+    description : {type: String},
+    duration : {type: String},
     category : {type: Array},
     audio : {type: Array},
-    year : {type: String, required: true},
+    year : {type: String},
     date_add : {type: Date, default: Date.now},
     score : {type: String},
     link_view : {type: Array},
+    link_view_count : {type: Number, default: 0},
     link_download : {type: Array},
     trailer : {type: String},
     views : {type: Number, default: 1},
-    likes : {type: Number, default: 0},
-	user : {type: String}
+    likes : {type: Array},
+    likecount : {type: Number, default: 0},
+    addtomylist : {type: Array},
+    user : {type: String},
+    reports: { 
+        user_id: {type:String},
+        user_name: {type: String},
+        report: {type: String}
+
+    }
 });
 
 MovieSchema.virtual('uniqueId')

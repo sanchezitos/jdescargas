@@ -1,31 +1,38 @@
+<br>
 <div class="row">
-    <div class="col-md-4 mx-auto">
-        <div class="card">
-            <div class="card-header">
-                <a href="/users/all_users"><span style="color:dimgray; font-size: 20px;"><i
-                            class="fas fa-arrow-left"></i></span></a>
-                Crear cuenta Administrador
-            </div>
-            <div class="card-body">
-                <form action="/users/regadmin" method="POST">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="name" placeholder="Nombre" value="{{name}}">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="email" placeholder="Correo" value="{{email}}">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" name="password" placeholder="Contraseña" value="{{password}}">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" name="conf_password"
-                            placeholder="Confirme contraseña" value="{{conf_password}}">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-block btn-light">Registrarse</button>
-                    </div>
-                </form>
-            </div>
+    <div class="col-6 card side" style="background: white">
+        <h2 style="padding: 20px;">Ingresar Administrador</h2>
+        <hr>
+        <div class="card-body">
+            <form action="/users/regadmin" method="POST">
+                <div class="form-group">
+                    <label>Nombre completo</label>
+                    <input type="text" name="name" class="form-control" placeholder="Nombre"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label>Correo</label>
+                    <input type="text" class="form-control" name="email" placeholder="Correo"
+                        value="{{email}}">
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" name="password" class="form-control"
+                        placeholder="Contraseña" required>
+                </div>
+                <div class="form-group">
+                    <label>Confirme contraseña</label>
+                    <input type="password" class="form-control" name="conf_password"
+                        placeholder="Confirme contraseña" value="{{conf_password}}">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-block btn-light">Ingresar Administrador</button>
+                </div>
         </div>
+        </form>
     </div>
 </div>
+</div>
+<script>
+   document.title='Ingresar administrador';
+   </script>

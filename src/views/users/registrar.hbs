@@ -1,4 +1,3 @@
-
 <script>
     onload = function () {
         var ele = document.querySelectorAll('.validanumericos')[0];
@@ -17,32 +16,40 @@
         {{#if user.typeuser}}
         <h2 style="padding: 20px;">Ingresar nuevo usuario</h2>
         <hr>
-
+        <script>
+            document.title = 'Ingresar usuario ';
+        </script>
         {{else}}
-          <center><h2 style="padding: 20px;">Regístrate :)</h2></center>
+        <center>
+            <h2 style="padding: 20px;">Regístrate :)</h2>
+        </center>
         <hr>
+        <script>
+            document.title = 'Registrate';
+        </script>
         {{/if}}
         <div class="card-body">
             <form action="/users/registrar" method="POST">
                 <input type="hidden" name="_method" value="PUT">
                 <div class="form-group">
                     <label>Nombre completo</label>
-                    <input type="text" style="width: 400px;" name="name" class="form-control" placeholder="Nombre"
-                        required>
+                    <input type="text" name="name" class="form-control" placeholder="Nombre"
+                        autofocus required>
                 </div>
-                  <div class="form-group">
-                      <label>Correo</label>
-                        <input type="text" style="width: 400px;" class="form-control" name="email" placeholder="Correo" value="{{email}}">
-                    </div>
+                <div class="form-group">
+                    <label>Correo</label>
+                    <input type="text" class="form-control" name="email" placeholder="Correo"
+                        value="{{email}}">
+                </div>
                 <div class="form-group">
                     <label>Telefono</label>
-                    <input type="text" style="width: 400px;" name="telephone" class="form-control validanumericos"
+                    <input type="text" name="telephone" class="form-control validanumericos"
                         placeholder="Telefono" required>
                 </div>
                 <div class="form-group">
                     <label>Pais</label>
                     <div class="form-group">
-                        <select name="country" id="country" class="form-control" style="width: 400px;" required>
+                        <select name="country" id="country" class="form-control" required>
                             <option value="" id="">Elegir opción</option>
                             <option value="Afganistán" id="AF">Afganistán</option>
                             <option value="Albania" id="AL">Albania</option>
@@ -282,18 +289,22 @@
                 </div>
                 <div class="form-group">
                     <label>Contraseña</label>
-                    <input type="password" style="width: 400px;" name="password" class="form-control"
+                    <input type="password" name="password" class="form-control"
                         placeholder="Contraseña" required>
                 </div>
                 <div class="form-group">
-                     <label>Confirme contraseña</label>
-                    <input type="password" style="width: 400px;" class="form-control" name="conf_password" placeholder="Confirme contraseña"
-                        value="{{conf_password}}">
+                    <label>Confirme contraseña</label>
+                    <input type="password" class="form-control" name="conf_password"
+                        placeholder="Confirme contraseña" value="{{conf_password}}">
                 </div>
                 <div class="form-group">
-                   
-                    <button class="btn btn-light btn-block" type="submit"> <i class="far fa-edit"></i> Ingresar
+{{#if user.typeuser}}
+  <button class="btn btn-light btn-block" type="submit"> <i class="far fa-edit"></i> Ingresar
                         usuario</button>
+{{else}}
+  <button class="btn btn-light btn-block" type="submit"> <i class="far fa-edit"></i> Registrate</button>
+{{/if}}
+                  
                 </div>
             </form>
         </div>
@@ -301,5 +312,4 @@
 </div>
 </div>
 <br>
-
 

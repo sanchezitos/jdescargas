@@ -1,4 +1,5 @@
 <script>
+    document.title='Editar usuario ' + '{{{usuario.name}}}';
     onload = function () {
         var ele = document.querySelectorAll('.validanumericos')[0];
         ele.onkeypress = function (e) {
@@ -15,32 +16,40 @@
 <br>
 <div class="row">
     <div class="col-6 card side" style="background: white">
-        <span style="font-size: 80px;"><i class="far fa-user-circle"></i> </span>
-        <h2 style="padding: 10px;">{{usuario.name}}</h2>
-        <span>Usuario(a) desde {{timeago usuario.date}} </span>
-        {{#if usuario.typeuser}}
-        <span style="font-size: 20px;"><i class="far fa-user"> </i> Usuario administrador</span>
-        {{else}}
-       <span><span style="font-size: 25px;"><i class="far fa-user"></i> </span> <span>Usuario Normal</span></span>
-        {{/if}}
+        <br>
+        <center>
+            <span style="font-size: 80px;"><i class="far fa-user-circle"></i> </span>
+            <h2 style="padding: 10px;">{{usuario.name}}</h2>
+            <span>Usuario(a) desde {{timeago usuario.date}} </span><br>
+            {{#if usuario.typeuser}}
+            <span style="font-size: 20px;"><i class="far fa-user"> </i> Administrador</span><br>
+            {{else}}
+            <span><span style="font-size: 25px;"><i class="far fa-user"></i> </span> <span>Usuario Normal</span></span>
+            <form action="/users/conv_adm/{{usuario._id}}?_method=PUT" method="POST">
+                <input type="hidden" name="_method" value="PUT">
+                <button class="btn btn-dark " type="submit">Convertir en administrador </button>
+                </form>
+                {{/if}}
+                <span style="font-size: 20px;"> <b>{{usuario.email}}</b></span>
+        </center>
         <hr>
         <div class="card-body">
-            <form action="/users/edit_user/{{user._id}}?_method=PUT" method="POST">
+            <form action="/users/edit_user/{{usuario._id}}?_method=PUT" method="POST">
                 <input type="hidden" name="_method" value="PUT">
                 <div class="form-group">
-                    <label><b>Nombre completo</b></label>
-                    <input type="text" style="width: 400px;" name="name" class="form-control" placeholder="Nombre"
+                    <label>Nombre completo</label>
+                    <input type="text" name="name" class="form-control" placeholder="Nombre"
                         value="{{usuario.name}}">
                 </div>
                 <div class="form-group">
-                    <label><b>Telefono</b></label>
-                    <input type="text" style="width: 400px;" name="telephone" class="form-control validanumericos"
+                    <label>Telefono</label>
+                    <input type="text" name="telephone" class="form-control validanumericos"
                         placeholder="Telefono" value="{{usuario.telephone}}">
                 </div>
                 <div class="form-group">
-                    <label><b>Pais</b></label>
+                    <label>Pais</label>
                     <div class="form-group">
-                        <select name="country" id="country" class="form-control" style="width: 400px;">
+                        <select name="country" id="country" class="form-control">
                             <option value="" id="">Elegir opción</option>
                             <option value="Afganistán" id="AF">Afganistán</option>
                             <option value="Albania" id="AL">Albania</option>
@@ -284,7 +293,7 @@
                     <button class="btn btn-light btn-block" type="submit"> <i class="far fa-edit"></i>Actuaizar
                         datos</button>
                 </div>
-               
+
 
             </form>
         </div>
@@ -296,20 +305,15 @@
     <div class="col-6 card side">
         <h2 style="padding: 10px;">Cambiar contraseña</h2>
         <p>Use esta opción para cambiar su contraseña, a continuación digite su contraseña actual.</p>
-        <form action="/users/edit_pas/{{user._id}}?_method=PUT" method="POST">
+        <form action="/users/edit_pas_adm/{{usuario._id}}?_method=PUT" method="POST">
             <div class="form-group">
-                <label><b>Contraseña actual</b></label>
-                <input type="password" style="width: 400px;" name="pas_act" class="form-control"
-                    placeholder="Contraseña actual" required>
-            </div>
-            <div class="form-group">
-                <label><b>Contraseña nueva</b></label>
-                <input type="password" style="width: 400px;" name="pass_new" class="form-control"
+                <label>Contraseña nueva</label>
+                <input type="password" name="pass_new" class="form-control"
                     placeholder="Contraseña nueva" required>
             </div>
             <div class="form-group">
-                <label><b>Confirmar contraseña</b></label>
-                <input type="password" style="width: 400px;" name="pas_newr" class="form-control"
+                <label>Confirmar contraseña</label>
+                <input type="password"  name="pas_newr" class="form-control"
                     placeholder="Confirmar contraseña" required>
             </div>
             <div class="form-group">
@@ -323,17 +327,19 @@
 <br>
 <div class="row">
     <div class="col-6 card side">
-        <h2 style="padding: 10px;">Eliminar mi cuenta</h2>
-        <p>Atención! Al eliminar su cuenta, perdera todos sus datos y no podrá recuperarla.
+        <h2 style="padding: 10px;">Eliminar usuario {{usuario.name}}</h2>
+        <p>Atención! Eliminar la cuenta de un usuario causara que pierda todos sus datos y no se podrán recuperar (por
+            ahora ._.).
             ¿Realmente desea eliminarla?
-            <form action="/users/delete/{{user._id}}?_method=DELETE" method="POST">
+            <form action="/users/delete/{{usuario._id}}?_method=DELETE" method="POST">
                 <input type="hidden" name="_method" value="PUT">
                 <button class="btn btn-danger btn-block" type="submit"><i class="far fa-trash-alt"></i> Eliminar
                     cuenta</button>
+            </form>
         </p>
     </div>
 </div>
- {{/if}}
+{{/if}}
 <!-- ///////////////////////////////////-->
 
 <script>

@@ -4,109 +4,95 @@
 <div class="card p-4 col-md-10">
     <h3>{{movie.title}}</h3>
     <div class="card-body">
-        <form action="/movies/edit_movie/{{movie._id}}?_method=PUT" method="POST">
-            <label for="image">Imagen de portada <b>(Tenga en cuenta que esta imagen no se puede cambiar)</b></label>
-            <div
-                style="background-size: cover; width: 200px; height: 200px; background-image: url('/upload/{{movie.filename}}'">
+        <form action="/movies/edit_image/{{movie._id}}?_method=PUT" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-4">
+                    <label for="image">Imagen actual</label>
+                    <div
+                        style="background-size: cover; width: 200px; height: 200px; background-image: url('/upload/{{movie.filename}}'">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="image">Nueva imagen</label>
+                        <input type="file" class="form-control-file " id="image" name="image" required>
+                    </div>
+                </div>
             </div>
-            <hr>
             <div class="form-group">
-                <label for="title">Titulo</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Titulo de la pelicula"
-                    value="{{movie.title}}" required>
+                <center><button type="submit" class="btn btn-dark">Cambiar imagen</button></center>
             </div>
-            <div class="form-group">
-                <label for="description">Descripción</label>
-                <textarea class="form-control" rows="5" id="description" name="description"
-                    placeholder="Descripción de la pelicula" required>{{movie.description}}</textarea>
-            </div>
-            <div class="form-row">
-                <div class="col-md-2">
-                    <label for="description">Año</label>
-                    <select class="form-control" name="year" id="year">
-                        <script>
-                            var d = new Date();
-                            var n = d.getFullYear();
-                            for (var i = n; i >= 1970; i--)
-                                document.write('<option value="' + i + '">' + i + '</option>');
-                        </script>
-                    </select>
-                    <label for="description" style="color: gray;">Año actual: {{movie.year}}</label>
-                </div>
-                <div class="form-group col-md-9">
-
-                    <label for="email">Categoria</label><br>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-control-input" type="checkbox" id="accion" name="accion" value="accion">
-                        <label class="form-check-label" for="inlineCheckbox1">Accion</label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="infantil" name="infantil" value="infantil">
-                        <label class="form-check-label" for="inlineCheckbox1">Infantil</label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="comedia" name="comedia" value="comedia">
-                        <label class="form-check-label" for="inlineCheckbox1">Comedia</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="terror" name="terror" value="terror">
-                        <label class="form-check-label" for="inlineCheckbox1">Terror</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="ficcion" name="ficcion"
-                            value="ciencia-ficcion">
-                        <label class="form-check-label" for="inlineCheckbox1">Ciencia ficción</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="aventura" name="aventura" value="aventura">
-                        <label class="form-check-label" for="inlineCheckbox1">Aventura</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="suspenso" name="suspenso" value="suspenso">
-                        <label class="form-check-label" for="inlineCheckbox1">Suspenso</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="romance" name="romance" value="romance">
-                        <label class="form-check-label" for="inlineCheckbox1">Romance</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="fanatasia" name="fantasia" value="fantasia">
-                        <label class="form-check-label" for="inlineCheckbox1">Fantasia</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="drama" name="drama" value="drama">
-                        <label class="form-check-label" for="inlineCheckbox1">Drama</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="animacion" name="animacion"
-                            value="animacion">
-                        <label class="form-check-label" for="inlineCheckbox1">Animación</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="crimen" name="crimen" value="crimen">
-                        <label class="form-check-label" for="inlineCheckbox1">Crimen</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="misterio" name="misterio" value="misterio">
-                        <label class="form-check-label" for="inlineCheckbox1">Misterio</label>
-                    </div>
-                    <br>
-                    <label style="color: gray">Categoria(s) actuales: {{movie.category}}.</label>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-2" style="margin-right: 30px;">
-                    <label for="duration">Duración</label><br>
-                    <input type="time" class="form-control" name="duration" value="{{movie.duration}}" required>
-                </div>
-            </div>
-            <label style="color: gray" for="duration">Duración actual: {{movie.duration}} horas</label>
-            <button type="submit" class="btn btn-block btn-light"><i class="fa fa-upload"></i>Actualizar
-                pelicula</button>
         </form>
+        <hr>
+        <form action="/movies/edit_movie/{{movie._id}}?_method=PUT" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="title">Titulo</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Titulo de la pelicula"
+                value="{{movie.title}}" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Descripción</label>
+            <textarea class="form-control" rows="5" id="description" name="description"
+                placeholder="Descripción de la pelicula" required>{{movie.description}}</textarea>
+        </div>
+        <div class="form-row">
+            <div class="col-md-2">
+                <label for="description">Año</label>
+                <select class="form-control" name="year" id="year">
+                    <script>
+
+                        document.title = 'Editar pelicula ' + '{{{movie.title}}}';
+                        var d = new Date();
+                        var n = d.getFullYear();
+                        for (var i = n; i >= 1970; i--)
+                            document.write('<option value="' + i + '">' + i + '</option>');
+                    </script>
+                </select>
+                <label for="description" style="color: gray;">Año actual: {{movie.year}}</label>
+            </div>
+            <div class="form-group col-md-9">
+
+                <label for="email">Categoria</label><br>
+
+                <script>
+                    var category = ["accion", "ifantil", "comedia", "terror", "ficcion", "aventura", "suspenso", "romance", "fantasia", "drama", "animacion", "crimen", "misterio"];
+                    for (i = 0; i < category.length; i++) {
+                        document.write('<div class="form-check form-check-inline">');
+                        if ('{{movie.category}}'.includes(category[i])) {
+                            document.write('<input class="form-control-input" type="checkbox" id="' + category[i] + '" name="' + category[i] + '" value="' + category[i] + '" checked> ');
+                        } else {
+                            document.write('<input class="form-control-input" type="checkbox" id="' + category[i] + '" name="' + category[i] + '" value="' + category[i] + '"> ');
+                        }
+
+                        document.write('<label class="form-check-label" for="inlineCheckbox1"> ' + category[i] + '</label>');
+                        document.write('</div>')
+
+                    }
+                </script>
+
+                <br>
+                <label style="color: gray">Categoria(s) actuales: {{movie.category}}.</label>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-2" style="margin-right: 30px;">
+                <label for="duration">Duración</label><br>
+                <input type="time" class="form-control" name="duration" value="{{movie.duration}}" required>
+            </div>
+        </div>
+        <label style="color: gray" for="duration">Duración actual: {{movie.duration}} horas</label>
+<!--Actualizar trailer -->
+         <div class="form-group col-md-9">
+              <label for="trailer">Trailer</label><br>
+              <textarea class="form-control" rows="5" id="trailer" name="trailer"
+                placeholder="Código del trailer para la pelicula" required>{{movie.trailer}}</textarea><br>
+              {{{movie.trailer}}}
+              
+         </div>
+
+        <button type="submit" class="btn btn-block btn-light"><i class="fa fa-upload"></i>Actualizar
+            pelicula</button>
+    </form>
     </div>
 </div>
 <br>

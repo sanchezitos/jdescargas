@@ -1,7 +1,7 @@
 <div class="card p-4 col-md-10">
-    <div class="card-header">
+    
         <h1>Agregar pelicula</h1>
-    </div>
+    
     <div class="card-body">
         <form action="/movies/add_movie" method="POST" enctype="multipart/form-data">
             <div class="form-group">
@@ -23,6 +23,9 @@
                     <label for="description">Año</label>
                     <select class="form-control" name="year" id="year">
                         <script>
+                       
+                        document.title='Ingresar pelicula';
+  
                             var d = new Date();
                             var n = d.getFullYear();
                             for (var i = n; i >= 1970; i--)
@@ -104,7 +107,9 @@
             <div class="form-row">
                 <div class="form-group col-md-9" style="">
                     <label for="duration">Agregar trailer</label><br>
-                    <input type="text" class="form-control" placeholder="Ingresa trailer de youtube" name="trailer" required>
+                     <textarea class="form-control" rows="5" id="trailer" name="trailer"
+                    placeholder="Código del trailer para la pelicula" required></textarea>
+                    
                 </div>
             </div>
             <button type="submit" class="btn btn-block btn-light"><i class="fa fa-upload"></i>Ingresar pelicula</button>

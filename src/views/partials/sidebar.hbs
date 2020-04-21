@@ -1,7 +1,7 @@
-<nav class="main-menu navbar-dark bg-dark side">
+<nav style="background-color: #191919;" class="main-menu navbar-dark side">
     <ul>
         <li>
-            <a href="/users/all_users">
+            <a href="/users/all_users/1">
                 <i class="fa fa-users fa-2x"></i>
                 <span class="nav-text">
                     Usuarios
@@ -10,7 +10,7 @@
 
         </li>
         <li class="has-subnav">
-            <a href="/movies/all_movies">
+            <a href="/movies/all_movies/1">
                 <i class="fa fa-film fa-2x"></i>
                 <span class="nav-text">
                     Peliculas
@@ -18,45 +18,36 @@
             </a>
 
         </li>
-        <li class="has-subnav">
-            <a href="/notes">
-                <i class="fa fa-sticky-note fa-2x"></i>
-                <span class="nav-text">
-                    Notas
-                </span>
-            </a>
-
-        </li>
-        <li class="has-subnav">
-            <a href="#">
+        <li class="has-subnav ">
+            <a href="/movies/mylist/{{user._id}}">
                 <i class="fa fa-folder-open fa-2x"></i>
                 <span class="nav-text">
-                    Pages
+                    Mi lista
                 </span>
             </a>
 
         </li>
         <li>
-            <a href="#">
-                <i class="fa fa-bar-chart-o fa-2x"></i>
+            <a href="/movies/reports/{{user._id}}">
+                <i class="fa fa-snowplow fa-2x"></i>
                 <span class="nav-text">
-                    Graphs and Statistics
+                    Reportes
                 </span>
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="/suggestions">
                 <i class="fa fa-font fa-2x"></i>
                 <span class="nav-text">
-                    Quotes
+                    Sugerencias
                 </span>
             </a>
         </li>
         <li>
-            <a href="#">
-                <i class="fa fa-table fa-2x"></i>
+            <a href="/notes">
+                <i class="fa fa-clipboard fa-2x"></i>
                 <span class="nav-text">
-                    Tables
+                    Notas
                 </span>
             </a>
         </li>

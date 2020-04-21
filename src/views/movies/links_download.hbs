@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-md-5">
+        <div class="card p-4 ">
+            <h3>Añadir links de descarga </h3>
+            <hr>
+            <form action="/movies/add_download/{{movie._id}}" method="POST">
+                <div class="form-group">
+                    <label>Seleccione servidor</label><br>
+                    <select class="form-control" name="server" id="server" required>
+                        <option value="">Seleccione una...</option>
+                        <option value="Mega"> Mega </option>
+                        <option value="Jetload"> Torrent </option>
+                        <option value="1Fichier"> 1Fichier </option>
+                        <option value="Netu"> Netu </option>
+                        <option value="Turbobit"> Turbobit </option>
+                        <option value="uqload"> Uqload </option>
+                        <option value="fembed"> Fembed </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Servidor</label><br>
+                    <textarea name="link" class="form-control" placeholder="Añada el link de descarga" rows="4"
+                        required></textarea>
+                </div>
+                <input type="hidden" name="id_movie" id="id_movie" value="{{movie._id}}">
+                <div class="form-group">
+                    <button class="btn btn-light btn-block" type="submit"><i class="fa fa-film"></i>Añadir link</button>
+                </div>
+            </form>
+        </div>
+    </div>
+        <div class="col-md-6">
+            {{#if links}}
+            {{#each links}}
+                <div class="card p-2">
+                <hr>
+                <form action="/movies/remove_download/{{_id}}?_method=DELETE" method="POST">
+                <label>Link de {{server}}</label><br>
+                <textarea class="form-control" type="text" name="link" value="{{link}}">{{link}}</textarea><br>
+                <input type="hidden" name="movie" id="movie" value="{{movie}}">
+                <button class="btn btn-danger" type="submit"><i class="fas fa-trash-alt"></i> Eliminar link</button>
+                </form>
+            </div>
+            <br>
+            {{/each}}
+            {{else}}
+                <h2>No hay links de descargas agregados....</h2>
+            {{/if}}
+
+        </div>
+</div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+
+            document.title = 'Añadir links a ' + '{{{movie.title}}}';
+
+            $(document).ready(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+
+            });
+        </script>

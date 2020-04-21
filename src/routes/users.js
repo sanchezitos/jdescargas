@@ -7,10 +7,12 @@ const { isAuth } = require('../helpers/auth');
 var bcrypt = require('bcryptjs');
 var moment = require('moment');
 
+//Entrar - login-----------
 router.get('/users/entrar', (req, res) => {
 	res.render('users/entrar');
 });
 
+//Entrar - login-----------r
 router.post('/users/entrar', passport.authenticate('local', {
 	successRedirect: '/',
 	failureRedirect: '/users/entrar',
@@ -18,20 +20,45 @@ router.post('/users/entrar', passport.authenticate('local', {
 
 }));
 
+//Registrar usuario----------
 router.get('/users/registrar', (req, res) => {
 	res.render('users/registrar');
 });
+
+//Registrar administrador------------
 router.get('/users/regadmin', isAuth, (req, res) => {
 	res.render('users/regadmin');
 });
+
+//Mostrar usuarios - Administrador----------
 router.get('/users/all_users', isAuth, async (req, res) => {
 	const all_users = await User.find({}).sort({ date: 'desc' });
 	const user_new = await User.find({}).sort({ date: 'desc' }).limit(3);
 	const user_old = await User.find({}).sort({ date: 'asc' }).limit(3);
-	res.render('users/all_users', { all_users, user_new, user_old });
+	res.render('users/all_users/1', { all_users, user_new, user_old });
 });
 
 
+//Buscados de usuarios----------
+router.get('/users/search', isAuth, async (req, res) => {
+	const users = req.query.user;
+	const searchuser = await User.find({name: {$regex:users, $options: 'iu'}});
+	res.render('users/all_users', {searchuser});
+});
+
+//Paginación usuarios admin.....
+router.get('/users/all_users/:page', isAuth, async (req, res) => {
+	let perPage = 9;
+	let page = req.params.page || 1;
+	const all_users = await User.find().skip((perPage * page) - perPage).limit(perPage).sort({date: 'desc' });
+	await User.count().then(function ( count ){
+	num_pages = parseInt((count/9)+1);
+});
+	res.render('users/all_users', {all_users, num_pages, page});
+
+});
+
+//Registrar usuario------------
 router.post('/users/registrar', async (req, res) => {
 	const { name, telephone, country, email, password, conf_password } = req.body;
 	const errors = [];
@@ -63,6 +90,8 @@ router.post('/users/registrar', async (req, res) => {
 
 
 });
+
+//Registrar Administrador----------
 router.post('/users/regadmin', async (req, res) => {
 	const { name, email, password, conf_password } = req.body;
 	const errors = [];
@@ -88,48 +117,75 @@ router.post('/users/regadmin', async (req, res) => {
 			newUser.typeuser = 'user';
 			await newUser.save();
 			req.flash('succes_msg', 'Administrador registrado correctamente');
-			res.redirect('/');
+			res.redirect('/users/all_users/1');
 		}
 
 	}
 });
 
-router.get('/users/all_users/:id', isAuth, async (req, res) => {
+//Mostrar usuario - Administrador-------
+router.get('/users/show_user/:id', isAuth, async (req, res) => {
 	const usuario = await User.findById(req.params.id);
 	res.render('users/show_user', { usuario});
 });
 
+
+//Mi perfil - usuario ------------
 router.get('/users/myperf', isAuthenticated, async (req, res) => {
-	
 	res.render('users/myperf');
 });
 
 
+//Editr usuario-----------------
 router.get('/users/edit_user/:id', isAuthenticated, async (req, res) => {
 	const usuario = await User.findById(req.params.id);
 	res.render('users/edit_user', { usuario });
 });
-router.put('/users/edit_user/:id', isAuthenticated, async (req, res) => {
+
+//Editr usuario - Administrador -----------------
+router.put('/users/edit_user/:id', isAuth, async (req, res) => {
 	const { name, telephone, country } = req.body;
 	await User.findByIdAndUpdate(req.params.id, { name, telephone, country });
-	req.flash('succes_msg', 'Usuario actualizado satisfactoriamente');
-	res.redirect('/users/all_users');
+		req.flash('succes_msg', 'Usuario actualizado satisfactoriamente');
+		res.redirect('/users/all_users/1');
+	
 });
 
+//Editr mi perfil-------------
+router.put('/users/edit_myuser/:id', isAuthenticated, async (req, res) => {
+	const { name, telephone, country } = req.body;
+	await User.findByIdAndUpdate(req.params.id, { name, telephone, country });
+		req.flash('succes_msg', 'Datos actualizados satisfactoriamente');
+		res.redirect('/users/myperf');
+	
+});
+
+//Convertir en Administrador - Administrador -----------
+router.put('/users/conv_adm/:id', isAuth, async (req, res) => {
+	const  typeuser = 'user';
+	const usuario = await User.findById(req.params.id);
+	await User.findByIdAndUpdate(req.params.id, { typeuser });
+		req.flash('succes_msg', 'Usuario ' + usuario.name + ' convertido en administrador');
+		res.redirect('/users/all_users/1');
+	
+});
+
+//Eliminar usuario ------------
 router.get('/users/delete_user/:id', isAuthenticated, async (req, res) => {
 	const usuario = await User.findById(req.params.id);
 	res.render('users/delete_user', { usuario });
 });
 
+//Eliminar usuario ------------
 router.delete('/users/delete_user/:id', isAuthenticated, async (req, res) => {
 	await User.findByIdAndDelete(req.params.id)
 	req.flash('succes_msg', 'Usuario eliminado satisfactoriamente');
-	res.redirect('/users/all_users');
+	res.redirect('/');
 
 });
 
 //Rutas para myerf actualizar, eliminar y salir
-router.put('/users/edit_pas/:id', async (req, res) => {
+router.put('/users/edit_pas/:id', isAuth, async (req, res) => {
 	const usuario = await User.findById(req.params.id);
 	const { pas_act, pass_new, pas_newr } = req.body;
 	const Usuario = new User({ password });
@@ -153,12 +209,33 @@ router.put('/users/edit_pas/:id', async (req, res) => {
 	}
 
 });
-router.delete('/users/delete/:id', async (req, res) => {
+
+//Editar contraseña de usuario (Administrador)
+router.put('/users/edit_pas_adm/:id', isAuth, async (req, res) => {
+	const usuario = await User.findById(req.params.id);
+	const { pass_new, pas_newr } = req.body;
+	const Usuario = new User({ password });
+
+		if (pass_new == pas_newr) {
+			Usuario.password = await Usuario.encryptPassword(pass_new);
+			var password = Usuario.password;
+			await User.findByIdAndUpdate(req.params.id, {password});
+			req.flash('succes_msg', 'Usuario actualizado correctamente');
+			res.redirect('/users/all_users/1');
+		} else {
+			req.flash('error', 'Las contraseñas no coinciden');
+			res.redirect('/users/show_user/'+req.params.id);
+		}
+});
+//Eliminar usuario - Administrador -------------
+router.delete('/users/delete/:id', isAuth, async (req, res) => {
 	await User.findByIdAndDelete(req.params.id)
-	res.redirect('/');
+	req.flash('succes_msg', 'Usuario eliminado correctamente');
+		res.redirect('/users/all_users/1');
 
 });
 
+//Salir de la cuenta - Log Out------
 router.get('/users/salir', (req, res) => {
 	req.logout();
 	res.redirect('/');

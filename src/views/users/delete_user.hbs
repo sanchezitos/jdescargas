@@ -1,17 +1,18 @@
 <center>
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-
-            <h5 class="card-title"><a href="/users/all_users"><span style="color:dimgray; font-size: 20px;"><i
-                            class="fas fa-arrow-left"></i></span></a> Eliminar usuario {{usuario.name}}</h5>
-            <hr class="my-4">
-            <h6 class="card-subtitle mb-2 text-muted">(Esta acción es irreversible)</h6>
-            <p class="card-text">¿Esta seguro de eliminar este usuario?</p>
-            <hr class="my-4">
-            <form action="/users/delete_user/{{usuario._id}}?_method=DELETE" method="POST">
+<div class="row">
+    <div class="col-6 card side">
+        <h2 style="padding: 10px;">Eliminar usuario {{usuario.name}}</h2>
+        <p>Atención! Eliminar la cuenta de un usuario causara que pierda todos sus datos y no se podrán recuperar (por
+            ahora ._.).
+            ¿Realmente desea eliminarla?
+            <form action="/users/delete/{{usuario._id}}?_method=DELETE" method="POST">
                 <input type="hidden" name="_method" value="PUT">
-                <button class="btn btn-light btn-block" type="submit">Eliminar</button>
-            </form>
-        </div>
+                <button class="btn btn-danger btn-block" type="submit"><i class="far fa-trash-alt"></i> Eliminar
+                    cuenta</button>
+        </p>
     </div>
+</div>
 </center>
+<script>
+   document.title='Eliminar usuario ' + '{{{usuario.name}}}';
+   </script>
