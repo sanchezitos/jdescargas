@@ -1,2 +1,4 @@
 node_modules
 /src/public/upload
+/src/routes/movies.js
+/src/routes/posts.js
