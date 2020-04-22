@@ -1,0 +1,18 @@
+<center>
+<div class="row">
+    <div class="col-6 card side">
+        <h2 style="padding: 10px;">Eliminar usuario {{usuario.name}}</h2>
+        <p>Atención! Eliminar la cuenta de un usuario causara que pierda todos sus datos y no se podrán recuperar (por
+            ahora ._.).
+            ¿Realmente desea eliminarla?
+            <form action="/users/delete/{{usuario._id}}?_method=DELETE" method="POST">
+                <input type="hidden" name="_method" value="PUT">
+                <button class="btn btn-danger btn-block" type="submit"><i class="far fa-trash-alt"></i> Eliminar
+                    cuenta</button>
+        </p>
+    </div>
+</div>
+</center>
+<script>
+   document.title='Eliminar usuario ' + '{{{usuario.name}}}';
+   </script>

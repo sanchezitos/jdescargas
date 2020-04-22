@@ -1,0 +1,38 @@
+<br>
+<div class="row">
+    <div class="col-6 card side" style="background: white">
+        <h2 style="padding: 20px;">Ingresar Administrador</h2>
+        <hr>
+        <div class="card-body">
+            <form action="/users/regadmin" method="POST">
+                <div class="form-group">
+                    <label>Nombre completo</label>
+                    <input type="text" name="name" class="form-control" placeholder="Nombre"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label>Correo</label>
+                    <input type="text" class="form-control" name="email" placeholder="Correo"
+                        value="{{email}}">
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" name="password" class="form-control"
+                        placeholder="Contraseña" required>
+                </div>
+                <div class="form-group">
+                    <label>Confirme contraseña</label>
+                    <input type="password" class="form-control" name="conf_password"
+                        placeholder="Confirme contraseña" value="{{conf_password}}">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-block btn-light">Ingresar Administrador</button>
+                </div>
+        </div>
+        </form>
+    </div>
+</div>
+</div>
+<script>
+   document.title='Ingresar administrador';
+   </script>

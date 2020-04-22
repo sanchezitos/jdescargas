@@ -1,0 +1,253 @@
+<div class="row">
+	<div class="col-9">
+				<ul class="nav nav-pills ">
+			<li class="nav-item ">
+				<a style="background-color:#212121" class="nav-link active navbar-dark side" href="/category/accion">Accion</a>
+			</li>
+			<li class="nav-item">
+				<a style="background-color:#212121" class="nav-link active navbar-dark side" href="/category/aventura">Aventura</a>
+			</li>
+			<li class="nav-item">
+				<a style="background-color:#212121" class="nav-link active navbar-dark side" href="/category/infantil">Infantil</a>
+			</li>
+			<li class="nav-item">
+				<a style="background-color:#212121" class="nav-link active navbar-dark side" href="/category/comedia">Comedia</a>
+			</li>
+			<li class="nav-item">
+				<a style="background-color:#212121" class="nav-link active navbar-dark  side" href="/category/terror">Terror</a>
+			</li>
+			<li class="nav-item">
+				<a style="background-color:#212121" class="nav-link active navbar-dark side" href="/category/suspenso">Suspenso</a>
+			</li>
+			<li class="nav-item">
+				<a style="background-color:#212121" class="nav-link active navbar-dark side" href="/category/romance">Romance</a>
+			</li>
+				<li class="nav-item">
+				<a style="background-color:#212121" class="nav-link active navbar-dark side" href="/category/drama">Drama</a>
+			</li>
+				<li class="nav-item dropdown">
+    <a style="background-color:#212121" class="nav-link dropdown-toggle navbar-dark  side active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">mas</a>
+    <div style="background-color:#212121" class="dropdown-menu navbar-dark side active ">
+      <a class="dropdown-item" style="background-color:#212121; color: gray; font-color:gray;" href="/category/ciencia ficcion">Cienc. ficción</a>
+      <a class="dropdown-item" style="background-color:#212121;color: gray;" href="/category/animacion">Animación</a>
+      <a class="dropdown-item" style="background-color:#212121;color: gray;" href="/category/crimen">Crimen</a>
+	  <a class="dropdown-item" style="background-color:#212121; color: gray;" href="/category/misterio">Misterio</a>
+	  <a class="dropdown-item" style="background-color:#212121; color: gray;" href="/category/fantasia">Fantasia</a>
+  </li>
+		</ul>
+		<hr>
+		{{#each moviesp}}
+		<a href="/movies/{{title}}">
+			<div class="div-imagen" style="margin-bottom: 20px; margin-right: 10px;  ">
+				<div style="background-color: black; height: 21.5rem; padding: 10px; border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000;
+">
+
+					<div class="cat"><span style="color:whitesmoke; padding: 10px; "><b>{{title}}
+								({{year}})</b></span>
+					</div>
+					<FONT FACE="arial narrow">
+						<p style="color:gray">{{description}}</p>
+					</FONT>
+					<div style="padding-top: 75px; color:gray;">
+						<p>{{timeago date_add}} • {{views}} vistas </p>
+					</div>
+					<div class="cat" style=" color:whitesmoke;">{{category}}</div>
+
+				</div>
+				<img class="desvanecer" style="border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000; height: 21.5rem; width: 15.5rem;
+" src="/upload/{{filename}}" />
+			</div>
+		</a>
+		{{/each}}
+		{{#if cat}}
+		<h5>Peliculas de {{cat}}</h5>
+		<script>
+		  document.title = 'Peliculas - {{{cat}}}';
+		  </script>
+		{{#each movies}}
+	
+		<a href="/movies/{{title}}">
+			<div class="div-imagen" style="margin-bottom: 20px; margin-right: 10px;  ">
+				<div style="background-color: black; height: 21.5rem; padding: 10px; border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000;
+">
+
+					<div class="cat"><span style="color:whitesmoke; padding: 10px; "><b>{{title}}
+								({{year}})</b></span>
+					</div>
+					<FONT FACE="arial narrow">
+						<p style="color:gray">{{description}}</p>
+					</FONT>
+					<div style="padding-top: 75px; color:gray;">
+						<p>{{timeago date_add}} • {{views}} vistas </p>
+					</div>
+					<div class="cat" style=" color:whitesmoke;">{{category}}</div>
+
+				</div>
+				<img class="desvanecer" style="border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000; height: 21.5rem; width: 15.5rem;
+" src="/upload/{{filename}}" />
+			</div>
+		</a>
+		{{/each}}
+		{{/if}}
+		{{#if s}}
+		{{#if movies}}
+		<h5>Busqueda: {{s}}</h5>
+		{{#each movies}}
+		<a href="/movies/{{title}}">
+			<div class="div-imagen" style="margin-bottom: 20px; margin-right: 10px;  ">
+				<div style="background-color: black; height: 21.5rem; padding: 10px; border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000;
+">
+
+					<div class="cat"><span style="color:whitesmoke; padding: 10px; "><b>{{title}}
+								({{year}})</b></span>
+					</div>
+					<FONT FACE="arial narrow">
+						<p style="color:gray">{{description}}</p>
+					</FONT>
+					<div style="padding-top: 75px; color:gray;">
+						<p>{{timeago date_add}} • {{views}} vistas </p>
+					</div>
+					<div class="cat" style=" color:whitesmoke;">{{category}}</div>
+
+				</div>
+				<img class="desvanecer" style="border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000; height: 21.5rem; width: 15.5rem;
+" src="/upload/{{filename}}" />
+			</div>
+		</a>
+		{{/each}}
+		{{else}}
+		<h5>Busqueda: No se encontraron peliculas :(</h5>
+		{{/if}}
+		{{/if}}
+
+		<br>
+{{#if page}}
+
+<!--Paginacion-->
+<nav  class="mx-auto">
+	<ul  class="pagination nav justify-content-center" id="pagination">
+
+		<script>
+			//Primera pagina
+			if ({{ page }} == 1) {
+				var li = '<li style="background-color:#212121" class="page-item disabled "><a href="#" style="background-color:#212121; color: white;" class="page-link navbar-dark side">Inicio</a></li>';
+				document.getElementById('pagination').innerHTML += li;
+			}else {
+				var li = '<li style="background-color:#212121" class="page-item"><a style="background-color:#212121; color: white;" href="/page/1" class="page-link navbar-dark side" style="color: white;">Inicio</a></li>';
+				document.getElementById('pagination').innerHTML += li;
+			}
+
+			//Paginas
+			var i = (Number({{ page }}) > 5 ? Number({{ page }}) - 4 : 1);
+			if (i !== 1) {
+				var li = '<a href="#" style="background-color:#212121; color: white;" class="page-link navbar-dark side">...</a>';
+				document.getElementById('pagination').innerHTML += li;
+			}
+			for(; i<=Number({{page}}) + 4 && i<= {{num_pages}}; i++){
+				if(i == {{page}}){
+				var li = '<li style="background-color:#212121" class="page-item disabled "><a style="background-color:#212121; color: white;" href="/'+i+'" class="navbar-dark side page-link navbar-dark bg-dark side">'+i+'</a></li>';
+				document.getElementById('pagination').innerHTML += li;
+				}else{
+				var li = '<li class="page-item"><a style="background-color:#212121; color: white;" href="/page/'+i+'" class="page-link navbar-dark side" >'+i+'</a></li>';
+				document.getElementById('pagination').innerHTML += li;	
+				}
+				if(i == Number({{page}}) + 4 && i < {{num_pages}}){
+				var li = '<li class="page-item"><a style="background-color:#212121; color: white;" href="#" class="page-link">...</a></li>';
+				document.getElementById('pagination').innerHTML += li;	
+				}
+			}
+			//Ultima pagina
+			if ({{ num_pages }} == {{ page }}) {
+				var li = '<li class="page-item disabled"><a style="background-color:#212121" href="#"  class="page-link navbar-dark side">Fin</a></li>';
+				document.getElementById('pagination').innerHTML += li;
+			}else {
+				var li = '<li class="page-item"><a style="background-color:#212121; color: white;" href="/page/{{num_pages}}"  class="page-link navbar-dark side">Fin</a></li>';
+				document.getElementById('pagination').innerHTML += li;
+			}
+		</script>
+	</ul>
+</nav>
+{{/if}}
+
+<!--Paginación -->
+
+	</div>
+	<div class="col">
+		<div>
+			<div class="side p-2" style="background:#212121; opacity: 0.8;">
+				<span style="color:white">Peliculas destacadas</span>
+			</div>
+			<hr>
+			<div>
+				{{#each dest}}
+				<a data-toggle="tooltip" title="{{title}}" href="/movies/{{uniqueId}}">
+					<img class="" style="border-radius: 10px 10px 10px 10px;
+				border: 0px solid #000000; height: 8rem; width: 5rem;
+				" src="/upload/{{filename}}" />
+				</a>
+				{{/each}}
+			</div>
+		</div>
+		<br>
+		<div>
+			<div class="side p-2" style="background:#212121; opacity: 0.8;">
+				<span style="color:white">Redes sociales</span>
+			</div>
+			<hr>
+			<div>
+				<a data-toggle="tooltip" title="{{title}}" href="/movies/{{uniqueId}}">
+					<img style=" height: 4rem; width: 4rem;" src="/img/facebook.png" /></a>
+				<a href="https://www.whatsapp.com/?lang=es"><img style=" height: 4rem; width: 4rem;"
+						src="/img/descarga.png" /></a>
+
+			</div>
+
+		</div>
+		<br>
+		<div>
+			<div class="side p-2" style="background:#212121; opacity: 0.8;">
+				<span style="color:white">Te puede interesar:</span>
+			</div>
+			<hr>
+			<div>
+				<a class="link"  data-toggle="tooltip" href="/posts/download_movies">Como descargar peliculas</a><br>
+				<a class="link" href="https://www.whatsapp.com/?lang=es">Descifrar redes wifi</a>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<roW>
+
+</roW>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function () {
+		$('[data-toggle="tooltip"]').tooltip();
+		
+	});
+
+
+
+</script>
+</div>
