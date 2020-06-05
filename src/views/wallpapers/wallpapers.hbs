@@ -1,0 +1,189 @@
+<h2>Wallpapers agregados</h2>
+<hr>
+<div class="row">
+    <div class="col-9.5">
+        <a class="btn btn-light" data-toggle="modal" data-target="#wallpaper" href="/wallpapers/add">Añadir
+            wallpaper</a>
+        <table class="table table-hover table-light">
+            <thead>
+                <tr>
+                </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col"> Secuela</th>
+                    <th scope="col"> Tiempo de adición</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+		                <script>
+                    var compare = [];
+                </script>
+                {{#each wallpapers}}
+		 <script>
+                    compare.push('{{secuela}}');
+
+                </script>
+                <tr>
+                    <td></td>
+                    <td>{{secuela}}</td>
+                    <td>{{timeago date_add}}</td>
+                    <td><button class="btn btn-dark" data-toggle="modal"
+                            onclick="getElementById('img').src='{{imageURL}}';" data-target="#view">Ver
+                        </button> <button class="btn btn-danger" data-toggle="modal" data-target="#delete"
+                            onclick="getElementById('title').innerHTML='{{secuela}}';
+                                    getElementById('sec').value='{{_id}}';
+                                    getElementById('id_image').value='{{image_id}}';">Eliminar</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+
+        </table>
+    </div>
+
+    <!-- Modal Eliminar wallpaper -->
+    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Eliminar Wallpaper <span id="title"></span>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label>¿Esta seguro que desea eliminar este wallpaper?</label>
+                    <form action="/wallpapers/remove?_method=DELETE" method="POST">
+                        <input type="hidden" name="_method" value="PUT">
+                        <input type="hidden" name="sec" id="sec" value="">
+                        <input type="hidden" name="id_image" id="id_image" value="">
+                        <hr>
+                        <center><button type="submit" class="btn btn-danger">Eliminar</button></center>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin del modal-->
+
+    <!-- Modal Ver wallpaper -->
+    <div class="modal fade" id="view" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Ver Wallpaper</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="" id="img" width="750" height="400" alt="Imagen de wallpapaer">
+                    <hr>
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin del modal-->
+
+    <!-- Modal Añadir wallpaper -->
+    <div class="modal fade" id="wallpaper" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Añadir Wallpaper</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/wallpapers/add" method="POST" enctype="multipart/form-data">
+                        {{#if secuela}}
+                        <div class="form-group">
+                            <label>Seleccione la secuela</label>
+                            <br>
+                            <select class="form-control" id="secuela" name="secuela" required>
+                                <option value="">Seleccione una</option>
+
+                               
+                                <script>
+                                    var editar = "{{{secuela}}}";
+                                    editar = editar.replace(/secuela: /gi, '');
+                                    editar = editar.replace(/{ /gi, '');
+                                    editar = editar.replace(/ }/gi, '');
+                                    editar = editar.replace(/{}/gi, '');
+                                    editar = editar.replace(/'/gi, '');
+                                    var res = editar.split(",");
+                                    const distintos = [...new Set(res)];
+                                    var filter = distintos.filter(Boolean);
+                                    var array = [];
+                                    for (var ii = 0; ii < filter.length; ii++) {
+                                        var igual = false;
+                                        for (var j = 0; j < compare.length & !igual; j++) {
+                                            if (filter[ii] == compare[j])
+                                                igual = true;
+                                        }
+                                        if (!igual) array.push(filter[ii]);
+                                    }
+                                  
+                                    for (i = 0; i <= array.length; i++) {
+                                        document.write(' <option value="' + array[i] + '">' + array[i] + '</option>');
+                                    }
+
+                                </script>
+                            </select>
+                        </div>
+                        {{/if}}
+                        <div class="form-group">
+                            <label for="image">Imagen para wallpaper *</label>
+                            <input type="file" class="form-control-file " id="image" name="image" required>
+                            <input type="hidden" class="form-control" name="imagenactual" id="imagenactual">
+                            <hr>
+                            <img src="" width="750px" height="400px" id="imagenmuestra">
+                        </div>
+                        <input type="hidden" name="name" id="name" value="{{user.name}}">
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-light">Enviar</button>
+                    </form>
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin del modal-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    // Asignamos el atributo src a la tag de imagen
+                    $('#imagenmuestra').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // El listener va asignado al input
+        $("#image").change(function () {
+            readURL(this);
+        });
+    </script>
+
+    <script>
+        document.title = 'Wallpapers';
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+        });
+    </script>

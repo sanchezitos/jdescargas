@@ -6,7 +6,8 @@ const SuggestionSchema = new Schema({
     email: {type:String},
     suggestion: {type: String},
     state: {type: String},
-    date_add : {type: Date, default: Date.now}
+    date_add : {type: Date, default: Date.now},
+    state : {type: String}
 
 });
 

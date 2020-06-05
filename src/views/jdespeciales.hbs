@@ -1,0 +1,333 @@
+<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+<style>body{background-image: url(https://res.cloudinary.com/jdescargas/image/upload/v1591055285/img_wall/orig_710813_livvsr.jpg);background-position: top;background-repeat: no-repeat;background-attachment: fixed;background-size: cover;}.slider, .navegation, .dest{display: none;}</style>
+<style>
+	body {
+		background-image: url("https://res.cloudinary.com/jdescargas/image/upload/v1591055285/img_wall/orig_710813_livvsr.jpg");
+		font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+		font-size: 14px;
+		color: #000;
+		margin: 0;
+		padding: 0;
+	}
+
+	.swiper-container {
+		width: 100%;
+		height: 320px;
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
+
+	.swiper-slide {
+		background-position: center;
+		background-size: cover;
+		width: 250px;
+		height: 250px;
+
+	}
+</style>
+<hr>
+<center><a href="/JDespeciales"><img width="200px"; height="170px;" src="https://res.cloudinary.com/jdescargas/image/upload/v1590968875/WhatsApp_Image_2020-05-29_at_10.40_hdrllg.png"></a></center>
+<hr>
+<center><a href="/category/marvel"><img class="side" width="100px;" height="50px;" src="/img/marvel_comics-logo.png"></a></center>
+<div class="swiper-container">
+	<div class="swiper-wrapper ">
+		{{#each marvel}}
+		<div class="swiper-slide" id="imagen" >		
+			<a href="/movies/{{title}}">
+			<div class="div-imagen" style="margin-bottom: 20px; margin-right: 10px;  ">
+				<div class="divimg">
+					<div class="cat">
+						<center><span style="color:whitesmoke; padding: 10px; font-size:20; "><b>{{title}}</b></span>
+						</center>
+					</div>
+					<FONT FACE="arial narrow">
+						<p style="color:gray">{{description}}</p>
+					</FONT>
+					<div style="padding-top: 75px; color:gray;">
+					</div>
+				</div>
+				{{#if filename}}
+				<img class="desvanecer side" style="border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000; height: 15.5rem; width: 15.5rem;
+" src="/upload/{{filename}}" />
+				{{else}}
+				<img class="desvanecer side" style="border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000; height: 15.5rem; width: 15.5rem;
+" src="{{imageURL}}" />
+				{{/if}}
+			</div>
+			</a>
+		</div>
+		{{/each}}
+	</div>
+	<!-- Add Pagination -->
+	<div class="swiper-pagination"></div>
+</div>
+<br>
+<center><a href="/category/dccomics"><img class="" width="70px;" height="70px;" src="https://res.cloudinary.com/jdescargas/image/upload/v1591314185/img/85856ce0-7ecd-452f-8522-3788112ee45d_nzfhgu.png"></a></center>
+<div class="swiper-container">
+	<div class="swiper-wrapper ">
+		{{#each dccomics}}
+		<div class="swiper-slide" id="imagen" >		
+			<a href="/movies/{{title}}">
+			<div class="div-imagen" style="margin-bottom: 20px; margin-right: 10px;  ">
+				<div class="divimg">
+					<div class="cat">
+						<center><span style="color:whitesmoke; padding: 10px; font-size:20; "><b>{{title}}</b></span>
+						</center>
+					</div>
+					<FONT FACE="arial narrow">
+						<p style="color:gray">{{description}}</p>
+					</FONT>
+					<div style="padding-top: 75px; color:gray;">
+					</div>
+				</div>
+			{{#if filename}}
+				<img class="desvanecer side" style="border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000; height: 15.5rem; width: 15.5rem;
+" src="/upload/{{filename}}" />
+			</div>
+			</a>
+			{{else}}
+				<img class="desvanecer side" style="border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000; height: 15.5rem; width: 15.5rem;
+" src="{{imageURL}}" />
+			</div>
+			</a>
+
+			{{/if}}
+				
+		</div>
+		{{/each}}
+	</div>
+	<!-- Add Pagination -->
+	<div class="swiper-pagination"></div>
+</div>
+<br>
+<center><img width="190px" height="50px" src="https://res.cloudinary.com/jdescargas/image/upload/v1591315172/img/animadas_gwvno0.png"></center>
+<div class="swiper-container">
+	<div class="swiper-wrapper ">
+		{{#each jdanimada}}
+		<div class="swiper-slide" id="imagen" >		
+			<a href="/JDespeciales/{{title}}">
+			<div class="div-imagen" style="margin-bottom: 20px; margin-right: 10px;  ">
+				<div class="divimg">
+					<div class="cat">
+						<center><span style="color:whitesmoke; padding: 10px; font-size:20; "><b>{{title}}</b></span>
+						</center>
+					</div>
+					<FONT FACE="arial narrow">
+						<p style="color:gray">{{description}}</p>
+					</FONT>
+					<div style="padding-top: 75px; color:gray;">
+					</div>
+				</div>
+				<img class="desvanecer side" style="border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000; height: 15.5rem; width: 15.5rem;
+" src="{{imageURL}}" />
+			</div>
+			</a>
+		</div>
+		{{/each}}
+	</div>
+	<!-- Add Pagination -->
+	<div class="swiper-pagination"></div>
+</div>
+<br>
+<center><img width="190px" height="50px" src="https://res.cloudinary.com/jdescargas/image/upload/v1591315443/img/animadas_h1phgd.png"></center>
+<div class="swiper-container">
+	<div class="swiper-wrapper ">
+		{{#each jdfantasia}}
+		<div class="swiper-slide" id="imagen" >		
+			<a href="/JDespeciales/{{title}}">
+			<div class="div-imagen" style="margin-bottom: 20px; margin-right: 10px;  ">
+				<div class="divimg">
+					<div class="cat">
+						<center><span style="color:whitesmoke; padding: 10px; font-size:20; "><b>{{title}}</b></span>
+						</center>
+					</div>
+					<FONT FACE="arial narrow">
+						<p style="color:gray">{{description}}</p>
+					</FONT>
+					<div style="padding-top: 75px; color:gray;">
+					</div>
+				</div>
+				<img class="desvanecer side" style="border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000; height: 15.5rem; width: 15.5rem;
+" src="{{imageURL}}" />
+			</div>
+			</a>
+		</div>
+		{{/each}}
+	</div>
+	<!-- Add Pagination -->
+	<div class="swiper-pagination"></div>
+</div>
+<br>
+<center><img width="190px" height="50px" src="https://res.cloudinary.com/jdescargas/image/upload/v1591315588/img/animadas_men76n.png"></center>
+<div class="swiper-container">
+	<div class="swiper-wrapper ">
+		{{#each jdsuper}}
+		<div class="swiper-slide" id="imagen" >		
+			<a href="/JDespeciales/{{title}}">
+			<div class="div-imagen" style="margin-bottom: 20px; margin-right: 10px;  ">
+				<div class="divimg">
+					<div class="cat">
+						<center><span style="color:whitesmoke; padding: 10px; font-size:20; "><b>{{title}}</b></span>
+						</center>
+					</div>
+					<FONT FACE="arial narrow">
+						<p style="color:gray">{{description}}</p>
+					</FONT>
+					<div style="padding-top: 75px; color:gray;">
+					</div>
+				</div>
+				<img class="desvanecer side" style="border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000; height: 15.5rem; width: 15.5rem;
+" src="{{imageURL}}" />
+			</div>
+			</a>
+		</div>
+		{{/each}}
+	</div>
+	<!-- Add Pagination -->
+	<div class="swiper-pagination"></div>
+</div>
+<br>
+<center><img width="190px" height="50px" src="https://res.cloudinary.com/jdescargas/image/upload/v1591315662/img/animadas_xxpuwk.png"></center>
+<div class="swiper-container">
+	<div class="swiper-wrapper ">
+		{{#each jdaccion}}
+		<div class="swiper-slide" id="imagen" >		
+			<a href="/JDespeciales/{{title}}">
+			<div class="div-imagen" style="margin-bottom: 20px; margin-right: 10px;  ">
+				<div class="divimg">
+					<div class="cat">
+						<center><span style="color:whitesmoke; padding: 10px; font-size:20; "><b>{{title}}</b></span>
+						</center>
+					</div>
+					<FONT FACE="arial narrow">
+						<p style="color:gray">{{description}}</p>
+					</FONT>
+					<div style="padding-top: 75px; color:gray;">
+					</div>
+				</div>
+				<img class="desvanecer side" style="border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000; height: 15.5rem; width: 15.5rem;
+" src="{{imageURL}}" />
+			</div>
+			</a>
+		</div>
+		{{/each}}
+	</div>
+	<!-- Add Pagination -->
+	<div class="swiper-pagination"></div>
+</div>
+<br>
+<center><img width="190px" height="50px" src="https://res.cloudinary.com/jdescargas/image/upload/v1591315947/img/jdescargas-1_wqsg4m.png"></center>
+<div class="swiper-container">
+	<div class="swiper-wrapper ">
+		{{#each jdterror}}
+		<div class="swiper-slide" id="imagen" >		
+			<a href="/JDespeciales/{{title}}">
+			<div class="div-imagen" style="margin-bottom: 20px; margin-right: 10px;  ">
+				<div class="divimg">
+					<div class="cat">
+						<center><span style="color:whitesmoke; padding: 10px; font-size:20; "><b>{{title}}</b></span>
+						</center>
+					</div>
+					<FONT FACE="arial narrow">
+						<p style="color:gray">{{description}}</p>
+					</FONT>
+					<div style="padding-top: 75px; color:gray;">
+					</div>
+				</div>
+				<img class="desvanecer side" style="border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000; height: 15.5rem; width: 15.5rem;
+" src="{{imageURL}}" />
+			</div>
+			</a>
+		</div>
+		{{/each}}
+	</div>
+	<!-- Add Pagination -->
+	<div class="swiper-pagination"></div>
+</div>
+<br>
+<center><img width="190px" height="50px" src="https://res.cloudinary.com/jdescargas/image/upload/v1591316018/img/jdescargas-1_jn4fwz.png"></center>
+<div class="swiper-container">
+	<div class="swiper-wrapper ">
+		{{#each jdentretenimiento}}
+		<div class="swiper-slide" id="imagen" >		
+			<a href="/JDespeciales/{{title}}">
+			<div class="div-imagen" style="margin-bottom: 20px; margin-right: 10px;  ">
+				<div class="divimg">
+					<div class="cat">
+						<center><span style="color:whitesmoke; padding: 10px; font-size:20; "><b>{{title}}</b></span>
+						</center>
+					</div>
+					<FONT FACE="arial narrow">
+						<p style="color:gray">{{description}}</p>
+					</FONT>
+					<div style="padding-top: 75px; color:gray;">
+					</div>
+				</div>
+				<img class="desvanecer side" style="border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000; height: 15.5rem; width: 15.5rem;
+" src="{{imageURL}}" />
+			</div>
+			</a>
+		</div>
+		{{/each}}
+	</div>
+	<!-- Add Pagination -->
+	<div class="swiper-pagination"></div>
+</div>
+<br>
+<script src="https://unpkg.com/swiper/js/swiper.js"></script>
+<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+<script>
+
+	var swiper = new Swiper('.swiper-container', {
+		effect: 'coverflow',
+		grabCursor: true,
+		centeredSlides: true,
+		slidesPerView: 'auto',
+		coverflowEffect: {
+			rotate: 50,
+			stretch: 0,
+			depth: 100,
+			modifier: 1,
+			slideShadows: true,
+		},
+		pagination: {
+			el: '.swiper-pagination',
+		},
+	});
+</script>
+
+<script>
+ document.title = 'JDespeciales';
+
+</script>

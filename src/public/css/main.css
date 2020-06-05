@@ -1,3 +1,64 @@
+.divimg{
+  background-color: black; height: 15.5rem; padding: 10px; border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000;
+}
+.images{
+  border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000; height: 15.5rem; width: 15.5rem;
+}
+.pr{
+  background-color: #900c3f;
+  color: white;
+}
+.pr:hover{
+  background-color: #900c3f
+  color: white;
+}
+.jetload{
+  background-color: rebeccapurple;
+  color: white;
+}
+.jetload:hover{
+  background-color: rebeccapurple;
+  color: white;
+}
+.netu{
+  background-color:midnightblue;
+  color: white;
+}
+.netu:hover{
+  background-color:midnightblue;
+  color: white;
+}
+.fembed{
+  background-color: orange;
+  color: white;
+}
+.fembed:hover{
+  background-color: orange;
+  color: white;
+}
+.ficher{
+  background-color: peru;
+  color: white;
+}
+.ficher:hover{
+  background-color: peru;
+  color: white;
+}
+.turbo{
+  background-color: saddlebrown;
+  color: white;
+}
+.turbo:hover{
+  background-color: saddlebrown;
+  color: white;
+}
+
 body {
   background: #E5E7E9;  /* fallback for old browsers */
   background: #E5E7E9;  /* Chrome 10-25, Safari 5.1-6 */
@@ -5,6 +66,8 @@ body {
   
 }
 
+.rec:hover{
+}
 
 
 
@@ -239,7 +302,7 @@ padding:0;
 }
 .main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
 color:#fff;
-background-color:#5fa2db;
+background-color:gray;
 }
 .area {
 float: left;

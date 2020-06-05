@@ -1,14 +1,16 @@
 <header>
     <nav style="background-color: #191919;" class="navbar navbar-expand-lg navbar-dark side">
-        <a href="/"><img width="300" height="50" src="/img/jdescargas-1.png"></a>
+        
+        <div class="d-none d-md-none d-lg-block"><a href="/"><img width="50" height="50" src="/img/icono_jdescargas.png"></a></div>
+        <div class="d-sm-none d-md-block d-lg-none"><a href="/"><img width="50" height="50" src="/img/icono_jdescargas.png"></a></div>
         
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="container">
-            <div style="width: 500px;;">
-            <form action="/index" method="GET" class="form-inline my-2 my-lg-0">
+		<div class="d-none d-md-block d-lg-block" style="width: 500px;">
+	      <form action="/index" method="GET" class="form-inline my-2 my-lg-0">
                 <input style="position:relative; width:100%;" class="form-control mr-sm-2 side" type="search" name="s"
                     placeholder="Buscar pelicula" aria-label="Search">
             </form>

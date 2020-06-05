@@ -14,6 +14,7 @@
 <hr>
 <div class="row">
   <div class="col-9.5">
+<h4>Total de peliculas: {{cont}}</h4>
     <a class="btn btn-light" href="/">Mostrar peliculas</a>
     <a class="btn btn-light" href="/movies/add">Añadir pelicula</a>
     <a class="btn btn-light" href="/movies/all_movies/1">Todas las peliculas</a>
@@ -41,8 +42,12 @@
           
 
         <tr>
-          <td>{{title}}</td>
+          <td><a class="link" href="/movies/{{title}}">{{title}}</a></td>
+	{{#if filename}}	
           <td><img style="height: 2rem; width: 1.5rem;" src="/upload/{{filename}}"></td>
+	{{else}}
+	<td><img style="height: 2rem; width: 1.5rem;" src="{{imageURL}}"></td>
+	{{/if}}
           <td>{{timeago date_add}}
           <td>
             <script>
@@ -52,8 +57,10 @@
                 document.write('<a data-toggle="tooltip" title="Añadir links" href="/movies/links_view/{{_id}}"><i  class="fas fa-plus"></a></i>');
                 document.write('<a data-toggle="tooltip" title="Añadir descargas" href="/movies/links_download/{{_id}}"><i  class="fas fa-download"></a></i>');
               } else {
-                document.write('<a data-toggle="tooltip" title="No puedes editar esta peliula" ><span style="color: gray;"><i class="fas fa-edit"></span></a></i>');
+                document.write('<a data-toggle="tooltip" href="/movies/{{title}}" title="Mostrar pelicula"><span style="color: green;"><i class="fas fa-film"></i></span></a>'); document.write('<a data-toggle="tooltip" title="Editar peliula" href="/movies/edit_movie/{{_id}}"><i class="fas fa-edit"></a></i>');
                 document.write('<a data-toggle="tooltip" href="/movies/{{title}}" title="Mostrar pelicula"><span style="color: green;"><i class="fas fa-film"></i></span></a>');
+                document.write('<a data-toggle="tooltip" title="Añadir links" href="/movies/links_view/{{_id}}"><i  class="fas fa-plus"></a></i>');
+                document.write('<a data-toggle="tooltip" title="Añadir descargas" href="/movies/links_download/{{_id}}"><i  class="fas fa-download"></a></i>');
               }
 
             </script>
@@ -76,8 +83,12 @@
         {{#each moviesp}}
 
         <tr>
-          <td>{{title}}</td>
+ <td><a class="link" href="/movies/{{title}}">{{title}}</a></td>
+	{{#if filename}}
           <td><img style="height: 2rem; width: 1.5rem;" src="/upload/{{filename}}"></td>
+	{{else}}
+	<td><img style="height: 2rem; width: 1.5rem;" src="{{imageURL}}"></td>
+	{{/if}}
           <td>{{timeago date_add}}
           <td>
             <script>
@@ -87,8 +98,10 @@
                 document.write('<a data-toggle="tooltip" title="Añadir links" href="/movies/links_view/{{_id}}"><i  class="fas fa-plus"></a></i>');
                 document.write('<a data-toggle="tooltip" title="Añadir descargas" href="/movies/links_download/{{_id}}"><span style="color: green;"><i class="fas fa-download"></i></span></a>');
               } else {
-                document.write('<a data-toggle="tooltip" title="No puedes editar esta peliula" ><span style="color: gray;"><i class="fas fa-edit"></span></a></i>');
+                document.write('<a data-toggle="tooltip" title="Editar peliula" href="/movies/edit_movie/{{_id}}"><i class="fas fa-edit"></a></i>');
                 document.write('<a data-toggle="tooltip" href="/movies/{{title}}" title="Mostrar pelicula"><span style="color: green;"><i class="fas fa-film"></i></span></a>');
+                document.write('<a data-toggle="tooltip" title="Añadir links" href="/movies/links_view/{{_id}}"><i  class="fas fa-plus"></a></i>');
+                document.write('<a data-toggle="tooltip" title="Añadir descargas" href="/movies/links_download/{{_id}}"><i  class="fas fa-download"></a></i>');
               }
 
             </script>
@@ -161,7 +174,11 @@
 
     <b>{{title}}</b><br>
     <a data-toggle="tooltip" href="/movies/{{title}}" title="{{title}}">
+	{{#if filename}}
       <img style="height: 3rem; width: 2rem;" src="/upload/{{filename}}">
+	{{else}}
+	<img style="height: 3rem; width: 2rem;" src="{{imageURL}}">
+	{{/if}}
     </a><br>
     <div style="height: 0.5rem; width: {{views}}; background-color:gray"></div>{{views}} Vistas
     <hr>

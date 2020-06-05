@@ -41,8 +41,13 @@ router.get('/users/all_users', isAuth, async (req, res) => {
 
 //Buscados de usuarios----------
 router.get('/users/search', isAuth, async (req, res) => {
-	const users = req.query.user;
-	const searchuser = await User.find({name: {$regex:users, $options: 'iu'}});
+	var result = req.query.user;
+	result = result.replace(new RegExp(/[aáAÁ]/g), "[aáAÁ]");
+	result = result.replace(new RegExp(/[eéEÉ]/g), "[eéEÉ]");
+	result = result.replace(new RegExp(/[iíIÍ]/g), "[iíIÍ]");
+	result = result.replace(new RegExp(/[oóOÓ]/g), "[oóOÓ]");
+	result = result.replace(new RegExp(/[uúUÚ]/g), "[uúUÚ]");
+	const searchuser = await User.find({name: {$regex:result, $options: 'iu'}});
 	res.render('users/all_users', {searchuser});
 });
 
@@ -53,14 +58,17 @@ router.get('/users/all_users/:page', isAuth, async (req, res) => {
 	const all_users = await User.find().skip((perPage * page) - perPage).limit(perPage).sort({date: 'desc' });
 	await User.count().then(function ( count ){
 	num_pages = parseInt((count/9)+1);
+	cont = parseInt(count);
 });
-	res.render('users/all_users', {all_users, num_pages, page});
+	res.render('users/all_users', {all_users, num_pages, page, cont});
 
 });
 
 //Registrar usuario------------
 router.post('/users/registrar', async (req, res) => {
-	const { name, telephone, country, email, password, conf_password } = req.body;
+	var name = req.body.name;
+	name = name.trim();
+	const { telephone, country, email, password, conf_password } = req.body;
 	const errors = [];
 	if (name.length <= 0) {
 		errors.push({ text: 'Por favor inserte los datos' })
@@ -93,7 +101,9 @@ router.post('/users/registrar', async (req, res) => {
 
 //Registrar Administrador----------
 router.post('/users/regadmin', async (req, res) => {
-	const { name, email, password, conf_password } = req.body;
+	var name = req.body.name;
+	name = name.trim();
+	const { email, password, conf_password } = req.body;
 	const errors = [];
 	if (name.length <= 0) {
 		errors.push({ text: 'Por favor inserte los datos' })

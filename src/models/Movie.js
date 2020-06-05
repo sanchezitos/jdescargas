@@ -21,17 +21,9 @@ const MovieSchema = new Schema({
     likecount : {type: Number, default: 0},
     addtomylist : {type: Array},
     user : {type: String},
-    reports: { 
-        user_id: {type:String},
-        user_name: {type: String},
-        report: {type: String}
-
-    }
+    secuela : {type: String},
+    imageURL : {type: String},
+    image_id: {type: String}
 });
-
-MovieSchema.virtual('uniqueId')
-.get(function(){
-    return this.filename.replace(path.extname(this.filename),'')
-})
 
 module.exports = mongoose.model('Movie', MovieSchema)

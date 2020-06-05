@@ -25,11 +25,19 @@ border: 0px solid #000000;
                     <div class="cat" style=" color:whitesmoke;">{{category}}</div>
 
                 </div>
+		{{#if filename}}
                 <img class="desvanecer" style="border-radius: 10px 10px 10px 10px;
 -moz-border-radius: 10px 10px 10px 10px;
 -webkit-border-radius: 10px 10px 10px 10px;
 border: 0px solid #000000; height: 21.5rem; width: 15.5rem;
 " src="/upload/{{filename}}" />
+		{{else}}
+                <img class="desvanecer" style="border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000; height: 21.5rem; width: 15.5rem;
+" src="{{imageURL}}" />
+		{{/if}}
 
             </div>
 

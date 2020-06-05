@@ -1,0 +1,184 @@
+<h2>JDespeiales agregados</h2>
+<hr>
+<div class="row">
+    <div class="col-9.5">
+        <a class="btn btn-light" data-toggle="modal" data-target="#jd">Añadir JDespeciales</a>
+        <a class="btn btn-light" href="/JDespeciales">Ir a JDespeciales</a>
+        <table class="table table-hover table-light">
+            <thead>
+                <tr>
+                </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col"> Titulo</th>
+		    <th scope="col"> Categoria</th>
+                    <th scope="col"> Tiempo de adición</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <script>
+                    var compare = [];
+                </script>
+                {{#each jdespeciales}}
+                <tr>
+                    <script>
+                        compare.push('{{title}}');
+
+                    </script>
+                    <td></td>
+                    <td>{{title}}</td>
+		    <td>{{category}}</td>	
+                    <td>{{timeago date_add}}</td>
+                    <td><button class="btn btn-dark" data-toggle="modal"
+                            onclick="getElementById('img').src='{{imageURL}}'; getElementById('des').innerHTML='{{description}}'; getElementById('ti').innerHTML='{{title}}'"
+                            data-target="#view_jd">Previsualizar
+                        </button> <button class="btn btn-danger" data-toggle="modal" data-target="#delete_jd" onclick="getElementById('title').innerHTML='{{title}}';
+                                    getElementById('sec').value='{{_id}}';">Eliminar</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+
+        </table>
+    </div>
+    <script>
+        var filter = [];
+    </script>
+    {{#each secuela}}
+    <script>
+        filter.push('{{secuela}}');
+    </script>
+    {{/each}}
+    <!-- Modal Añadir wallpaper -->
+    <div class="modal fade" id="jd" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Añadir JDespecial</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/jdespeciales/add" method="POST">
+                        <div class="form-group">
+                            <label>JDespecial para agregar</label>
+                            <select class="form-control" name="title" required>
+                                <option value="">Seleccione una opción</option>
+                                <script>
+                                    var array = [];
+                                    for (var ii = 0; ii < filter.length; ii++) {
+                                        var igual = false;
+                                        for (var j = 0; j < compare.length & !igual; j++) {
+                                            if (filter[ii] == compare[j])
+                                                igual = true;
+                                        }
+                                        if (!igual) array.push(filter[ii]);
+                                    }
+                                    for (i = 0; i <= array.length; i++) {
+                                        document.write(' <option value="' + array[i] + '">' + array[i] + '</option>');
+                                    }
+                                </script>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Categoria</label>
+                            <select class="form-control" name="category" required>
+                                <option value="">Seleccione una categoria</option>
+                                <option value="Animada">Animada</option>
+                                <option value="Fantasia">Fantasia</option>
+                                <option value="Superheroes">Superheroes</option>
+                                <option value="Accion">Acción</option>
+                                <option value="Terror">Terror</option>
+                                <option value="Entretenimiento">Entretenimiento</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea class="form-control" name="description" type="" required></textarea>
+                        </div>
+                        <hr>
+                        <center><button type="submit" class="btn btn-dark">Agregar</button></center>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin del modal-->
+
+    <!-- Modal Eliminar wallpaper -->
+    <div class="modal fade" id="delete_jd" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Eliminar JDespecial <span id="title"></span>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label>¿Esta seguro que desea eliminar este JDespecial?</label>
+                    <form action="/jdespeciales/remove?_method=DELETE" method="POST">
+                        <input type="hidden" name="_method" value="PUT">
+                        <input type="hidden" name="sec" id="sec" value="">
+                        <hr>
+                        <center><button type="submit" class="btn btn-danger">Eliminar</button></center>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin del modal-->
+
+<!-- Modal Ver wallpaper -->
+<div class="modal fade" id="view_jd" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Previsualizar JDespecial</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ceneter>
+                    <div class="div-imagen" style="margin-bottom: 20px; margin-right: 10px;  ">
+                        <img class="desvanecer images" id="img" src="{{imageURL}}">
+                </ceneter>
+                <hr>
+                <button type=" button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin del modal-->
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script>
+    document.title = 'JDespecial-admin';
+</script>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+
+    });
+</script>
+
+
+<!-- Button trigger modal -->

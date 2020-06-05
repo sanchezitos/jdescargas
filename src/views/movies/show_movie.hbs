@@ -17,7 +17,11 @@
     </div>
     <div class="row">
       <div class="col-md-4">
+	{{#if movie.filename}}
         <img style="width:100%; height:100%; " src="/upload/{{movie.filename}}">
+	{{else}}
+	<img style="width:100%; height:100%; " src="{{movie.imageURL}}">
+	{{/if}}
 
       </div>
       <div class="col-md-8">
@@ -83,10 +87,29 @@
            
             {{#each links}}
 
-            <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#a{{_id}}"
-              aria-expanded="false" aria-controls="collapseExample">
-              Opcion {{server}}
-            </button>
+             <script>
+              if('{{server}}' == 'mega'){
+                document.write('<button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#a{{_id}}" aria-expanded="false" aria-controls="collapseExample"> Opcion {{server}}</button>');
+              }
+              if('{{server}}' == 'fembed'){
+                document.write('<button class="btn fembed" type="button" data-toggle="collapse" data-target="#a{{_id}}" aria-expanded="false" aria-controls="collapseExample"> Opcion {{server}}</button>');
+              }
+              if('{{server}}' == 'uqload'){
+                document.write('<button class="btn btn-info" type="button" data-toggle="collapse" data-target="#a{{_id}}" aria-expanded="false" aria-controls="collapseExample"> Opcion {{server}}</button>');
+              }
+              if('{{server}}' == 'jetload'){
+                document.write('<button class="btn jetload" type="button" data-toggle="collapse" data-target="#a{{_id}}" aria-expanded="false" aria-controls="collapseExample"> Opcion {{server}}</button>');
+              } 
+              if('{{server}}' == 'gounlimited'){
+                document.write('<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#a{{_id}}" aria-expanded="false" aria-controls="collapseExample"> Opcion {{server}}</button>');
+              }       
+              if('{{server}}' == 'netu'){
+                document.write('<button class="btn netu" type="button" data-toggle="collapse" data-target="#a{{_id}}" aria-expanded="false" aria-controls="collapseExample"> Opcion {{server}}</button>');
+              }
+              if('{{server}}' == 'pplusplayer'){
+                document.write('<button class="btn pr" type="button" data-toggle="collapse" data-target="#a{{_id}}" aria-expanded="false" aria-controls="collapseExample"> Opcion {{server}}</button>');
+              }          
+            </script>
             <div class="collapse" id="a{{_id}}">
               <div class="card card-body">
                 <br>
@@ -109,14 +132,85 @@
 
                 {{#if linksd}}
                 {{#each linksd}}
-                  <a href="{{link}}" class="btn btn-dark" target="_blank">Descarga {{server}}</a>
+                  <script>
+                  if('{{server}}' == 'pr'){
+                document.write('<button class="btn pr" type="button" data-toggle="collapse" data-target="#a{{_id}}" aria-expanded="false" aria-controls="collapseExample"> Opcion {{server}}</button>');
+              }  
+                  if('{{server}}' == 'Mega'){
+                    document.write('<a href="{{link}}" class="btn btn-danger" target="_blank">Descarga {{server}}</a>');
+                  }
+                  if('{{server}}' == 'Torrent'){
+                    document.write('<a href="{{link}}" class="btn btn-success" target="_blank">Descarga {{server}}</a>');
+                  }
+                  if('{{server}}' == 'fembed'){
+                    document.write('<a href="{{link}}" class="btn fembed" target="_blank">Descarga {{server}}</a>');
+                  }
+                  if('{{server}}' == 'uqload'){
+                    document.write('<a href="{{link}}" class="btn btn-info" target="_blank">Descarga {{server}}</a>');
+                  }
+                  if('{{server}}' == 'Jetload'){
+                    document.write('<a href="{{link}}" class="btn jetload" target="_blank">Descarga {{server}}</a>');
+                  }
+                  if('{{server}}' == 'Gounilimited'){
+                    document.write('<a href="{{link}}" class="btn btn-primary" target="_blank">Descarga {{server}}</a>');
+                  }
+                  if('{{server}}' == 'Netu'){
+                    document.write('<a href="{{link}}" class="btn netu" target="_blank">Descarga {{server}}</a>');
+                  }
+                  if('{{server}}' == '1Fichier'){
+                    document.write('<a href="{{link}}" class="btn ficher" target="_blank">Descarga {{server}}</a>');
+                  }
+                  if('{{server}}' == 'Turbobit'){
+                    document.write('<a href="{{link}}" class="btn turbo" target="_blank">Descarga {{server}}</a>');
+                  }
+                </script>
                 {{/each}}
                 {{else}}
                   <h4 style="color: grey;">Lo sentimos, en el momento no hay opciones para descargas</h4>
                 {{/if}}
           </div>
+	          {{#if wallpaper}}
 
-          <hr>
+				<style>body{background-image: url({{wallpaper.imageURL}});
+                    background-position: top;
+                    background-attachment: fixed;
+                    background-size: cover;}.slider, .navegation, .dest{display: none;}
+                .container{
+                    opacity: 0.9;
+                }    
+        </style>;
+				
+          {{/if}}
+
+	  <hr>
+		          <script>
+            var secuela = '{{{movie.secuela}}}';
+          </script>
+	{{#if wallpaper}}
+            <img src="{{wallpaper.secuela}}" alt="">
+          {{/if}}
+          {{#if movie.secuela}}
+          <script>
+            document.write('<h4>Saga '+secuela+'</h4>')
+          </script>
+          {{#each sec}}
+            		<a data-toggle="tooltip" title="{{title}}" href="/movies/{{title}}">
+				{{#if filename}}
+	
+				<img class="" style="border-radius: 10px 10px 10px 10px;
+				border: 0px solid #000000; height: 13rem; width: 9rem;
+				" src="/upload/{{filename}}" />
+			</a>
+				{{else}}
+				<img class="" style="border-radius: 10px 10px 10px 10px;
+				border: 0px solid #000000; height: 13rem; width: 9rem;
+				" src="{{imageURL}}" />
+			</a>
+				
+{{/if}}
+        {{/each}}
+        {{/if}}
+	<hr>
 
 
         </div>
@@ -133,12 +227,19 @@
     {{#each movies}}
     <a href="/movies/{{title}}">
       <div class="div-imagen" style="margin-bottom: 20px; margin-right: 10px;  ">
-
+	{{#if filename}}
         <img class="desvanecer" style="border-radius: 10px 10px 10px 10px;
           -moz-border-radius: 10px 10px 10px 10px;
           -webkit-border-radius: 10px 10px 10px 10px;
           border: 0px solid #000000; height: 6rem; width: 4rem;
           " src="/upload/{{filename}}" />
+	{{else}}
+	<img class="desvanecer" style="border-radius: 10px 10px 10px 10px;
+          -moz-border-radius: 10px 10px 10px 10px;
+          -webkit-border-radius: 10px 10px 10px 10px;
+          border: 0px solid #000000; height: 6rem; width: 4rem;
+          " src="{{imageURL}}" />
+	{{/if}}
 
       </div>
 

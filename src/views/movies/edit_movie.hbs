@@ -8,9 +8,14 @@
             <div class="row">
                 <div class="col-4">
                     <label for="image">Imagen actual</label>
-                    <div
-                        style="background-size: cover; width: 200px; height: 200px; background-image: url('/upload/{{movie.filename}}'">
-                    </div>
+                                        <script>
+                        if ('{{movie.filename}}') {
+                            document.write('<div style="background-size: cover; width: 200px; height: 200px; background-image: url(/upload/{{movie.filename}})"></div>')
+                        }
+                        if('{{movie.imageURL}}'){
+                            document.write('<div style="background-size: cover; width: 200px; height: 200px; background-image: url({{movie.imageURL}})"> </div>') 
+                        }
+                    </script>
                 </div>
                 <div class="col-4">
                     <div class="form-group">
@@ -55,7 +60,7 @@
                 <label for="email">Categoria</label><br>
 
                 <script>
-                    var category = ["accion", "ifantil", "comedia", "terror", "ficcion", "aventura", "suspenso", "romance", "fantasia", "drama", "animacion", "crimen", "misterio"];
+                    var category = ["accion", "infantil", "comedia", "terror", "ficcion", "aventura", "suspenso", "romance", "fantasia", "drama", "animacion", "crimen", "misterio", "marvel", "dccomics", "disney"];
                     for (i = 0; i < category.length; i++) {
                         document.write('<div class="form-check form-check-inline">');
                         if ('{{movie.category}}'.includes(category[i])) {
@@ -88,6 +93,10 @@
                 placeholder="Código del trailer para la pelicula" required>{{movie.trailer}}</textarea><br>
               {{{movie.trailer}}}
               
+ 	</div>
+	         <div class="form-group">
+             <label>Secuela</label><br>
+             <input type="text" class="form-control" name="secuela" id="secuela" value="{{movie.secuela}}">
          </div>
 
         <button type="submit" class="btn btn-block btn-light"><i class="fa fa-upload"></i>Actualizar
@@ -104,11 +113,45 @@
     <h3 style="padding: 10px;">Eliminar pelicula</h3>
     <hr>
     <p>¿Realmente desea eliminar la pelicula: <b>{{movie.title}}</b> ?</p>
+    <button class="btn btn-danger" data-toggle="modal" data-target="#delete_movie"><i class="far fa-trash-alt"></i>Eliminar</button>
+    <br>
+    <!--Añadir links a pelicula 
     <form action="/movies/delete_movie/{{movie._id}}?_method=DELETE" method="POST">
         <input type="hidden" name="_method" value="PUT">
         <button class="btn btn-danger btn-block" type="submit"><i class="far fa-trash-alt"></i> Eliminar
             pelicula</button>
+            -->
 
+    </form>
 </div>
-
 {{/if}}
+<script>
+    document.ready = document.getElementById("year").value = '{{{movie.year}}}';
+</script>
+
+<!-- Modal Eliminar wallpaper -->
+<div class="modal fade" id="delete_movie" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Eliminar Pelicula {{movie.title}}<span
+                        id="title"></span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label>¿Esta seguro que desea eliminar esta pelicula? Recuerde que esta acción es irreversible</label>
+                <form action="/movies/delete_movie/{{movie._id}}?_method=DELETE" method="POST">
+                    <input type="hidden" name="_method" value="PUT">
+                    <hr>
+                    <button class="btn btn-danger btn-block" type="submit"><i class="far fa-trash-alt"></i> Eliminar
+                        </button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

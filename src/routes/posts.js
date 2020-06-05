@@ -8,4 +8,9 @@ router.get('/posts/download_movies', async (req, res) => {
 
 });
 
+router.get('/posts/download_torrents', async (req, res) => { 
+    res.render('download_torrents');
+
+});
+
 module.exports = router;

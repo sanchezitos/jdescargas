@@ -1,0 +1,54 @@
+<style>body{background-image: url({{jd.imageURL}});background-position: top;background-repeat: no-repeat;background-attachment: fixed;background-size: cover;}.slider, .navegation, .dest{display: none;}</style>
+<hr>
+<center><a href="/JDespeciales"><img width="90px" height="70px;" src="https://res.cloudinary.com/jdescargas/image/upload/v1590968875/WhatsApp_Image_2020-05-29_at_10.40_hdrllg.png"></a><FONT FACE="cooper black"><h1 style="color:#FF6600" >{{jd.title}}</h1></FONT><br></center>
+<hr>
+
+
+{{#each view}}
+<a href="/movies/{{title}}">
+			<div class="div-imagen" style="margin-bottom: 20px; margin-right: 10px;  ">
+				<div style="background-color: black; height: 21.5rem; padding: 10px; border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000;
+">
+
+					<div class="cat"><span style="color:whitesmoke; padding: 10px; "><b>{{title}}
+								({{year}})</b></span>
+					</div>
+					<FONT FACE="arial narrow">
+						<p style="color:gray">{{description}}</p>
+					</FONT>
+					<div style="padding-top: 75px; color:gray;">
+						<p>{{timeago date_add}} • {{views}} vistas </p>
+					</div>
+					<div class="cat" style=" color:whitesmoke;">{{category}}</div>
+
+				</div>
+				{{#if filename}}
+						<img class="desvanecer" style="border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000; height: 21.5rem; width: 15.5rem;
+"src="/upload/{{filename}}" />
+				{{else}}
+									<img class="desvanecer" style="border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 0px solid #000000; height: 21.5rem; width: 15.5rem;
+"src="{{imageURL}}" />
+				{{/if}}
+			
+			</div>
+		</a>
+{{/each}}
+<br><br><br>
+<script>
+    document.title = 'JDespecial ' + '{{jd.title}}';
+</script>
+
+
+
+				
+
+
