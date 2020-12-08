@@ -1,3 +1,95 @@
+/*iconos redes sociales INICIO*/
+.redes-container-index{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.redes-container-index ul li{
+  display: inline-block;
+  width: 60px;
+  height: 70px;
+  text-align: center;
+  align-items: center;
+}
+.redes-container-index ul li a{
+  display: block;
+  padding: 15px;
+  background: transparent;
+  color: #191919;
+  line-height: 70px;
+  font-size: 32px;
+  transition: .2s;
+}
+.redes-container-index ul:hover a{
+  filter: blur(2px);
+}
+.redes-container-index ul li a:hover{
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, .4);
+  filter: none;
+  
+}
+.redes-container-index ul li .facebook-index:hover{
+  background: var(--facebook);
+  color: #fff;
+}
+.redes-container-index ul li .instagram-index:hover{
+  background: var(--instagram);
+  color: #fff;
+}
+.redes-container-index ul li .twitter-index:hover{
+  background: var(--twitter);
+  color: #fff;
+}
+/*iconos redes sociales*/
+/*iconos redes sociales*/
+:root{
+  --facebook: #3b5999;
+  --instagram: #e4405f;
+  --twitter: #55acee;
+
+}
+.redes-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.redes-container ul li{
+  display: inline-block;
+  margin: 0 5px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+}
+.redes-container ul li a{
+  display: block;
+  padding: 10px;
+  background: #191919;
+  color: #fff;
+  line-height: 50px;
+  font-size: 18px;
+  transition: .2s;
+}
+.redes-container ul:hover a{
+  filter: blur(2px);
+}
+.redes-container ul li a:hover{
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, .4);
+  filter: none;
+}
+.redes-container ul li .facebook:hover{
+  background: var(--facebook);
+}
+.redes-container ul li .instagram:hover{
+  background: var(--instagram);
+}
+.redes-container ul li .twitter:hover{
+  background: var(--twitter);
+}
+/*iconos redes sociales*/
+
 .divimg{
   background-color: black; height: 15.5rem; padding: 10px; border-radius: 10px 10px 10px 10px;
 -moz-border-radius: 10px 10px 10px 10px;

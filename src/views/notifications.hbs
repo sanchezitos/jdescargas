@@ -1,0 +1,44 @@
+
+<hr>
+<h4>Notificaciones</h4>
+{{#if notifications}}
+<div id="notifications">
+<div class="row" id="not">
+    <table class="table table-hover table-light">
+        <thead>
+            <tr>
+                
+                <th scope="col"> Notificación</th>
+                <th scope="col"> Tipo</th>
+                <th scope="col"> Tiempo de adición</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each notifications}}
+            <tr>
+
+                <td>{{action}}</td>
+                <td>{{type}}</td>
+                <td>{{timeago date_add}}</td>
+            </tr>
+        </tbody>
+        {{/each}}
+    </table>
+</div>
+</div>
+{{else}}
+<span>Actualmente no hay notificaciones nuevas</span>
+{{/if}}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    document.title = 'JDescargas - Notificaciones';
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+        setInterval(function() {
+        $("#notifications").load(' #not');
+    },10000);
+   
+     });
+</script>

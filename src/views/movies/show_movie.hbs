@@ -1,5 +1,11 @@
 <div class="row">
-  <div class="col-9 card side">
+	<script>
+		if(screen.width<1000){
+			document.write('<div class="row card side">');
+		}else{
+			document.write('<div class="col-9 card side">');
+		}
+	</script>
     <div class="row">
       <div class="col-md-9">
         {{#if user}}
@@ -18,11 +24,10 @@
     <div class="row">
       <div class="col-md-4">
 	{{#if movie.filename}}
-        <img style="width:100%; height:100%; " src="/upload/{{movie.filename}}">
+        <img style="width:100%;" src="/upload/{{movie.filename}}">
 	{{else}}
-	<img style="width:100%; height:100%; " src="{{movie.imageURL}}">
+	<img style="width:100%;" src="{{movie.imageURL}}">
 	{{/if}}
-
       </div>
       <div class="col-md-8">
         <span><b>Sinopsis</b></span>
@@ -175,9 +180,7 @@
                     background-position: top;
                     background-attachment: fixed;
                     background-size: cover;}.slider, .navegation, .dest{display: none;}
-                .container{
-                    opacity: 0.9;
-                }    
+                    
         </style>;
 				
           {{/if}}
@@ -189,6 +192,7 @@
 	{{#if wallpaper}}
             <img src="{{wallpaper.secuela}}" alt="">
           {{/if}}
+<div class="p-3">
           {{#if movie.secuela}}
           <script>
             document.write('<h4>Saga '+secuela+'</h4>')
@@ -210,6 +214,7 @@
 {{/if}}
         {{/each}}
         {{/if}}
+</div>
 	<hr>
 
 
@@ -220,10 +225,16 @@
 
   </div>
 
-
-  <div class="col-3">
+	<script>
+		if(screen.width<800){
+			document.write('<hr><div class="row">');
+		}else{
+			document.write('<div class="col-3">');
+		}
+	</script>
     <h5>Quizá te puedan interesar estas peliculas:</h5>
     <hr>
+    <div>
     {{#each movies}}
     <a href="/movies/{{title}}">
       <div class="div-imagen" style="margin-bottom: 20px; margin-right: 10px;  ">
@@ -246,34 +257,7 @@
     </a>
 
     {{/each}}
-    		<div>
-			<div class="side p-2" style="background:#212121; opacity: 0.8;">
-				<span style="color:white">Redes sociales</span>
-			</div>
-			<hr>
-			<div>
-				<a data-toggle="tooltip" title="{{title}}" href="/movies/{{uniqueId}}">
-					<img style=" height: 4rem; width: 4rem;" src="/img/facebook.png" /></a>
-				<a href="https://www.whatsapp.com/?lang=es"><img style=" height: 4rem; width: 4rem;"
-						src="/img/descarga.png" /></a>
-
-			</div>
-
-		</div>
-		<br>
-		<div>
-			<div class="side p-2" style="background:#212121; opacity: 0.8;">
-				<span style="color:white">Te puede interesar:</span>
-			</div>
-			<hr>
-			<div>
-				<a class="link"  data-toggle="tooltip" href="/posts/download_movies">Como descargar peliculas</a><br>
-				<a class="link" href="https://www.whatsapp.com/?lang=es">Descifrar redes wifi</a>
-
-			</div>
-
-		</div>
-  </div>
+	</div>
 
 </div>
 

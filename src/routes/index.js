@@ -6,6 +6,13 @@ const Note = require('../models/Note');
 const { isAuth, isAuthenticated } = require('../helpers/auth');
 const Wallpapers = require('../models/Wallpaper');
 const Jdespecial = require('../models/Jdespecial');
+const Notification = require('../models/Notification');
+
+//Mostrar Notificaciones
+router.get('/notifications', isAuth, async (req, res) => {
+	const notifications = await Notification.find().sort({ date_add: 'desc' });
+	res.render('notifications', {notifications});
+});
 
 
 
@@ -72,6 +79,13 @@ router.post('/suggestion', async (req, res) => {
 		email : email,
 		suggestion : suggestion
 	});
+	const newNotification = new Notification({
+		action: 'new_suggestion',
+		type: 'suggestion',
+		user: name,
+		suggestion: 'Hay una nueva sugerencia'
+	});
+	await newNotification.save();
 	await newSuggestion.save();
 	res.redirect('/');
 });
@@ -124,12 +138,31 @@ router.get('/:s', async (req, res) =>{
 	result = result.replace(new RegExp(/[iíIÍ]/g), "[iíIÍ]");
 	result = result.replace(new RegExp(/[oóOÓ]/g), "[oóOÓ]");
 	result = result.replace(new RegExp(/[uúUÚ]/g), "[uúUÚ]");
-	
+
 	const movies = await Movie.find({title: {$regex:result, $options: 'iu'}});
-	
+
 	const dest = await Movie.find({views: {$gte:20}}).sort({views: 'desc'}).limit(12);
+	if(req.user){
+		const newNotification = new Notification({
+			action: 'new_searching',
+			type: 'search',
+			movie: req.query.s,
+			user: req.user.name,
+			user_id: req.user.id,
+			search: 'ha realizado la búsqueda'
+		});
+		await newNotification.save();
+	}else{
+			const newNotification = new Notification({
+				action: 'new_searching',
+				type: 'search',
+				movie: req.query.s,
+				user: 'unknown',
+				search: 'ha realizado la búsqueda'
+			});
+			await newNotification.save();
+	}
 	res.render('movies', {s:req.query.s, movies, dest, add1, add2, add3});
-	
 
 });
 
@@ -139,15 +172,16 @@ router.get('/', async (req, res) => {
 	const add2 = await Movie.find().sort({date_add: 'desc'}).skip(5).limit(5);
 	const add3 = await Movie.find().sort({date_add: 'desc'}).skip(10).limit(5);
 	const dest = await Movie.find({views: {$gte:20}}).sort({views: 'desc'}).limit(12);
-	let perPage = 9;
+	let perPage = 15;
 	let page = req.params.page || 1;
 	const all_movies =  await Movie.find().skip((perPage * page) - perPage).limit(perPage).sort({year: 'desc', date_add: 'desc' });
 	const moviesp = await Movie.find().skip((perPage * page) - perPage).limit(perPage).sort({year: 'desc', date_add: 'desc' });
+	const not = await Notification.find().sort({ date_add: 'desc' }).limit(5);
 	await Movie.count().then(function ( count ){
-	num_pages = parseInt((count/9)+1);
+	num_pages = parseInt((count/15)+1);
 });
 
-		res.render('movies',{all_movies, dest, num_pages, page, moviesp,add1,add2,add3});
+		res.render('movies',{all_movies, dest, num_pages, page, moviesp,add1,add2,add3, not});
 });
 
 
@@ -168,8 +202,6 @@ router.get('/category/:cat', async (req, res) => {
 		const dest = await Movie.find({ views: { $gte: 20 } }).sort({ views: 'desc' }).limit(12);
 		res.render('movies', {cat:req.params.cat, dest, movies, add1, add2, add3});
 	}
-
-
 });
 
 //Paginación.....
@@ -178,12 +210,12 @@ router.get('/page/:page', async (req, res) => {
 	const add2 = await Movie.find().sort({date_add: 'desc'}).skip(5).limit(5);
 	const add3 = await Movie.find().sort({date_add: 'desc'}).skip(10).limit(5);
 
-	let perPage = 9;
+	let perPage = 15;
 	let page = req.params.page || 1;
 	const dest = await Movie.find({views: {$gte:20}}).sort({views: 'desc'}).limit(12);
 	const moviesp = await Movie.find().skip((perPage * page) - perPage).limit(perPage).sort({year: 'desc', date_add: 'desc' });
 	await Movie.count().then(function ( count ){
-	num_pages = parseInt((count/9)+1);
+	num_pages = parseInt((count/15)+1);
 });
 	res.render('movies', {moviesp, num_pages, page, dest, add1, add2, add3});
 });
